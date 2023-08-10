@@ -6,6 +6,7 @@ export const theme = {
   blue:"#16B3E1",
   grey100:"#B0B9C7",
   grey200:"#88919F",
+  green:"#99CF95",
   lightBorder: "#E0E0E0",
   text:"#131436",
   shadow: {

@@ -1,26 +1,20 @@
-import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import PrimaryInput from '../../../components/inputs/primaryInput';
 import theme from '../../../common/theme';
 import Header from '../../../components/views/header';
-// import {AntDesign, Feather} from '../../../assets/vectorIcons';
 import {AppStyles, Typo} from '../../../common/styles';
-// import {Spacer} from '../../../components/Spacer';
 import PrimaryButton from '../../../components/buttons/primaryButton';
-import Fonts from '../../../assets/fonts';
-// import icons from '../../../assets/icons';
-import CustomImage from '../../../components/views/customImage';
-// import {navigate} from '../../../navigation/navigation.utils';
 import {useNavigation} from '@react-navigation/native';
 import icons from '../../../assets/icons';
 import Routes from '../../../navigation/routes';
-import { Spacer } from '../../../components/Spacer';
-// import CustomText from '../../../components/CustomText';
+import {Spacer} from '../../../components/Spacer';
 
 const Register = () => {
   const navigation = useNavigation();
   return (
     <>
+      <Spacer height={10} />
       <Header
         containerStyle={{marginLeft: 16}}
         showBack={false}
@@ -28,7 +22,8 @@ const Register = () => {
           <Image style={AppStyles.image1} source={icons.isBack} />
         )}
       />
-      <Text style={[{...AppStyles.h1}]}>Sign Up</Text>
+      <Text style={[{...AppStyles.h11}]}>Sign Up</Text>
+      <Spacer height={10} />
       <View style={{paddingHorizontal: 30}}>
         <PrimaryInput
           title="Email"
@@ -39,10 +34,9 @@ const Register = () => {
             width: '100%',
           }}
           inputStyle={{color: theme.grey100}}
-          placeholderTextColor={theme.lightGrey}
+          placeholderTextColor={theme.grey200}
           placeholder={'Enter your email'}
         />
-        {/* <Spacer height={10} /> */}
 
         <PrimaryInput
           secureText
@@ -54,7 +48,7 @@ const Register = () => {
             width: '100%',
           }}
           inputStyle={{color: theme.grey100}}
-          placeholderTextColor={theme.lightGrey}
+          placeholderTextColor={theme.grey200}
           placeholder={'Enter password'}
         />
 
@@ -68,11 +62,11 @@ const Register = () => {
             width: '100%',
           }}
           inputStyle={{color: theme.grey100}}
-          placeholderTextColor={theme.lightGrey}
+          placeholderTextColor={theme.grey200}
           placeholder={'Enter password'}
         />
 
-        <Spacer height={40} />
+        <Spacer height={30} />
         <PrimaryButton
           label="Sign Up"
           innerContainerStyle={{
@@ -97,7 +91,9 @@ const Register = () => {
             {'Already have account?'}
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate(Routes.Login)}>
-            <Text style={{color: theme.blue, marginTop: 14}}>{' Sign In'}</Text>
+            <Text style={{color: theme.blue, marginTop: 15, fontSize: 14}}>
+              {' Sign In'}
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -106,4 +102,3 @@ const Register = () => {
 };
 
 export default Register;
-

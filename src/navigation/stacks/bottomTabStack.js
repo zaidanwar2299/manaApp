@@ -1,16 +1,21 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Fonts from '../../assets/fonts';
 import { Ionicons } from "../../assets/vectorIcons";
-import BusinessProfile from '../../screens/businessProfile';
+// import BusinessProfile from '../../screens/businessProfile';
 import Home from '../../screens/home';
-import Messages from '../../screens/messages';
-import Notifications from '../../screens/notifications';
-import Search from '../../screens/search';
-import { openDrawer } from '../navigation.utils';
+// import Messages from '../../screens/messages';
+// import Notifications from '../../screens/notifications';
+// import Search from '../../screens/search';
+// import { openDrawer } from '../navigation.utils';
 import Routes from '../routes';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Login from '../../screens/auth/login';
+import Register from '../../screens/auth/register';
+import theme from '../../common/theme';
+import icons from '../../assets/icons';
+import ProfileScreen from '../../screens/ProfileScreen';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -25,21 +30,22 @@ const insets  = useSafeAreaInsets()
                     let tabLabel = ""
 
                     if (route.name == Routes.Home) {
-                        tabIcon = "home"
+                        tabIcon = <Image source={icons.home} />
                         tabLabel = "Home"
-                    } else if (route.name == Routes.Search) {
-                        tabIcon = "search"
+                    } else if (route.name == Routes.Login) {
+                        // tabIcon = "search"
                         tabLabel = "Search"
-                    } else if (route.name == Routes.Messages) {
-                        tabIcon = "chatbubbles-outline"
+                    } else if (route.name == Routes.ProfileScreen) {
+                        // tabIcon = "chatbubbles-outline"
                         tabLabel = "Messages"
-                    } else if (route.name == Routes.Notifications) {
-                        tabIcon = "notifications"
-                        tabLabel = "Notifications"
-                    } else if (route.name == Routes.DrawerMenu) {
-                        tabIcon = "md-menu-outline"
-                        tabLabel = ""
-                    }
+                    } 
+                    // else if (route.name == Routes.Notifications) {
+                    //     tabIcon = "notifications"
+                    //     tabLabel = "Notifications"
+                    // } else if (route.name == Routes.DrawerMenu) {
+                    //     tabIcon = "md-menu-outline"
+                    //     tabLabel = ""
+                    // }
 
                     const isFocused = () => {
                         return route.name == navigation.getState().routes[navigation.getState().index].name
@@ -52,16 +58,19 @@ const insets  = useSafeAreaInsets()
                                 flexDirection: "row",
                                 alignItems: "center",
                                 flexGrow: 1,
-                                justifyContent: "center"
+                                justifyContent: "center",
+                                backgroundColor:theme.primary,
                             }}>
-                            <Ionicons
+                            {/* <Ionicons
                                 name={tabIcon}
                                 size={24}
                                 color={isFocused() || route.name == Routes.DrawerMenu ? "black" : "#A1A1AF"}
                                 style={{
                                     marginRight: 5
                                 }}
-                            />
+                            /> */}
+                            {/* <Image source={tabIcon} /> */}
+
                             {isFocused() && (
                                 <Text
                                     style={{
@@ -83,9 +92,9 @@ const insets  = useSafeAreaInsets()
             })}
         >
             <BottomTab.Screen name={Routes.Home} component={Home} />
-            <BottomTab.Screen name={Routes.Search} component={Search} />
+            <BottomTab.Screen name={Routes.Login} component={Login} />
             {/* <BottomTab.Screen name={Routes.Messages} component={Messages} /> */}
-            <BottomTab.Screen name={Routes.Notifications} component={Notifications} />
+            <BottomTab.Screen name={Routes.ProfileScreen} component={ProfileScreen} />
         </BottomTab.Navigator>
     );
 };

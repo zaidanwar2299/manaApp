@@ -5,7 +5,7 @@ import Loader from "../../../components/views/loader"
 import Event from "../../../screens/event"
 import Talk from "../../../screens/talk"
 import Routes from "../../routes"
-import BottomTabStack from "../bottomTabStack"
+import BottomTabStack from "../BottomTabStack"
 import CustomDrawer from "./items/customDrawer"
 
 const Drawer = createDrawerNavigator()
