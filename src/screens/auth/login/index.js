@@ -1,5 +1,5 @@
 import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import PrimaryInput from '../../../components/inputs/primaryInput';
 import theme from '../../../common/theme';
 import Header from '../../../components/views/header';
@@ -10,11 +10,46 @@ import icons from '../../../assets/icons';
 import Routes from '../../../navigation/routes';
 import {Spacer} from '../../../components/Spacer';
 import Fonts from '../../../assets/fonts';
+import * as yup from 'yup';
+import { ErrorMessages, SchemaKeys } from '../../../common/constants';
+import { Regex, _isValidate } from '../../../utils/validation.utils';
 // import Fonts from '../../../assets/fonts'; 
 
 const Login = () => {
 
   const navigation = useNavigation();
+
+  let [state, _setState] = useState({
+    email: "",
+    password: "",
+    loading: false
+})
+
+const setState = (item = {}) => {
+    state = {
+        ...state,
+        ...item
+    }
+    _setState({ ...state })
+}
+
+const isValidate = () => {
+  let schema = {
+      [SchemaKeys.Email]: yup.string().required().email(),
+      [SchemaKeys.Password]: yup.string().required().matches(Regex.Password, ErrorMessages.Password),
+  }
+  let values = {
+      [SchemaKeys.Email]: state.email,
+      [SchemaKeys.Password]: state.password
+  }
+  console.log("SCHEEMMAAA",values)
+  return _isValidate(schema, values)
+};
+
+const handleLogin = () => {
+  if(!isValidate()) return
+}
+
   return (
     <View style={{flex:1, backgroundColor:theme.grey800}} >
     <Spacer height={10} />
@@ -40,6 +75,11 @@ const Login = () => {
           inputStyle={{color: theme.grey100}}
           placeholderTextColor={theme.grey200}
           placeholder={'Enter your email'}
+          value={state.email}
+          onChangeText={ (text) => {
+            setState({ email: text })
+            console.log("EMAILLLL",state.email)
+        }}
         />
         {/* <Spacer height={10} /> */}
 
@@ -56,6 +96,11 @@ const Login = () => {
           inputStyle={{color: theme.grey100}}
           placeholderTextColor={theme.grey200}
           placeholder={'Enter password'}
+          value={state.password}
+          onChangeText={ (text) => {
+            setState({ password: text })
+            console.log("Password",state.password)
+        }}
         />
 
         <Spacer height={25} />
@@ -67,6 +112,7 @@ const Login = () => {
             height: 55,
           }}
           onPress={() => navigation.navigate(Routes.BottomTabStack)}
+          // onPress={handleLogin}
           labelStyle={{fontSize: 15}}
         />
         <View

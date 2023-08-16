@@ -118,9 +118,10 @@ const PrimaryInput = props => {
         <Text
           style={[
             {
-              ...Typo.cardTitle,
+              // ...Typo.cardTitle,
               marginBottom: AppStyles.card.titleBottomSpace,
               marginTop: AppStyles.topSpace,
+              ...Typo.h2, fontFamily:Fonts.bold, color: theme.grey100
             },
             titleStyle,
           ]}>
@@ -143,7 +144,7 @@ const PrimaryInput = props => {
               borderWidth: 0.5,
               borderColor: 'grey',
               flexShrink: 1,
-              backgroundColor: 'white',
+              backgroundColor: theme.secondary,
               overflow: 'hidden',
             },
             innerContainerStyle,
@@ -151,16 +152,16 @@ const PrimaryInput = props => {
           {leftIconProps.type == 'inner' && checkIcon()}
           {typeof renderInput == 'function' &&
             renderInput({
-              placeholderTextColor: 'grey',
+              placeholderTextColor: theme.grey200,
               secureTextEntry: secureText && !state.passVisibilty,
               style: [
                 {
                   ...Typo.cardCaption,
-                  height: 50,
+                  height: 53,
                   includeFontPadding: false,
                   padding: 0,
                   flexGrow: 1,
-                  color: 'black',
+                  color: theme.grey100,
                   marginRight: 10,
                   ...(inputType == 'paragraph' && {
                     height: 125,

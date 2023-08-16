@@ -18,6 +18,8 @@ export default {
     search:require("./search.png"),
     upArrow:require("./upArrow.png"),
     menuIconWhite:require("./menuIconWhite.png"),
-    
-    
+    calendarBlue:require("./calendarBlue.png"),
+    circlePlus:require("./circlePlus.png"),
+    clock:require("./clock.png"),
+    location:require("./location.png"),
 }

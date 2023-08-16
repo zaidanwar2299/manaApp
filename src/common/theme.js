@@ -9,6 +9,7 @@ export const theme = {
   green:"#99CF95",
   lightBorder: "#E0E0E0",
   lightBg: "#E0E4FF",
+  darkGreen:"#31D158",
   text:"#131436",
   shadow: {
     shadowColor: "#000",

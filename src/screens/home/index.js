@@ -145,9 +145,9 @@ const Home = () => {
             color: 'white',
             alignSelf: 'flex-start',
             minWidth: 60,
-              marginBottom:5, 
-              // height:"auto",
-              // backgroundColor: 'red',
+            marginBottom: 5,
+            // height:"auto",
+            // backgroundColor: 'red',
           }}>
           <Text
             style={{
@@ -156,17 +156,17 @@ const Home = () => {
               textAlign: 'right',
               // backgroundColor: 'red',
               paddingLeft: 12,
-              marginBottom:10,
+              marginBottom: 10,
               // paddingTop: -10,
               // paddingBottom:10,
               position: 'absolute',
               fontFamily: Fonts.light,
-              fontSize:13
+              fontSize: 13,
             }}>{`${time}`}</Text>
 
           {/* Add additional content for each time slot */}
         </View>
-        <View style={{display: 'flex', flexDirection: 'row', }}>
+        <View style={{display: 'flex', flexDirection: 'row'}}>
           {[1, 2, 3, 4, 5, 6, 7].map(index => (
             <TouchableOpacity
               key={index}
@@ -178,7 +178,7 @@ const Home = () => {
                   // borderBottomWidth: 1,
                   // borderRightWidth: 1,
                   // borderLeftWidth: 1,
-                  borderWidth:1,
+                  borderWidth: 1,
                   borderColor: '#424652',
                 }}></View>
             </TouchableOpacity>
@@ -515,14 +515,14 @@ const Home = () => {
         renderEmptyDate={renderEmptyDate}
         // You can customize other props here
       /> */}
-      <CalendarProvider date={new Date()} showTodayButton disabledOpacity={0.6}>
+      <CalendarProvider date={new Date()} showTodayButton disabledOpacity={0.6}  >
         <View
           style={{
-            width: '100%',
+            // width: '100%',
             // display: 'flex',
             // flex:1,
 
-            alignSelf: 'center',
+            // alignSelf: 'center',
             // paddingLeft:25,
             // paddingRight:10
             // paddingHorizontal:10
@@ -539,9 +539,13 @@ const Home = () => {
               // textDayFontSize:13,
               // textDayHeaderFontSize:10,
               // textMonthFontSize:20,
-              // contentStyle:{paddingHorizontal:-10, paddingVertical:-10}
-              contentStyle:{width:"60%"}
+              // contentStyle: {width: '60%'},
+              // paddingTop:-30,
             }}
+            calendarStyle={{paddingLeft:52, }}
+            headerStyle={{paddingLeft:52, marginTop:20}}
+            renderHeader={()=> <View />}
+            renderArrow={()=> <View />}
             // firstDay={1}
             // markedDates={data}
             // onDayPress={(date) => {
@@ -557,7 +561,7 @@ const Home = () => {
           style={{
             flex: 1,
             // marginBottom:20,
-            // height: '100%', 
+            // height: '100%',
             backgroundColor: theme.primary,
           }}>
           {timeSlots.map((time, index) => (

@@ -39,7 +39,7 @@ const RootNavigator = () => {
   return (
     <>
       {/* <RootSiblingParent>  */}
-        <Stack.Navigator initialRouteName='Home' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='CreateAppointment' screenOptions={{ headerShown: false }}>
           <Stack.Screen name={Routes.BottomTabStack} component={BottomTabStack} />
           <Stack.Screen name={Routes.Login} component={Login} />
           <Stack.Screen name={Routes.Register} component={Register} />

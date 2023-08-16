@@ -65,14 +65,14 @@ export const AppStyles = StyleSheet.create({
   h3: {
     marginTop: 15,
     fontSize: 20,
-    fontFamily: Fonts.bold,
+    fontFamily: Fonts.regular,
     color: 'black',
   },
   // user profile heading
   h4: {
     fontSize: 14,
-    fontFamily: Fonts.bold,
-    color: 'black',
+    fontFamily: Fonts.regular,
+    color: 'white',
     marginTop: 15,
   },
   // business detail image style
@@ -111,6 +111,13 @@ export const AppStyles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 15,
   },
+  pickerIconStyle: {
+    height: 23,
+    width: 23,
+    marginRight: 15,
+    alignSelf: 'center',
+    resizeMode: 'contain',
+  }
 });
 
 export const tabBarStyles = ({route, navigation}) => {

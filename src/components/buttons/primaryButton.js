@@ -1,7 +1,7 @@
 import React from "react"
 import { Text, TouchableOpacity, ActivityIndicator, View } from "react-native"
-import AppTheme from "../../common/theme"
 import Fonts from "../../assets/fonts"
+import theme from "../../common/theme"
 
 const PrimaryButton = ({
     label,
@@ -12,28 +12,28 @@ const PrimaryButton = ({
     labelStyle,
     alignOnEnd,
     innerContainerStyle,
-    theme, // inverted, outlined
+    themes, // inverted, outlined
     renderRightItem,
     renderLeftItem,
     loadingProps
 }) => {
 
-    let CValues = {
-        bgColor: AppTheme.primary,
-        labelColor: "white",
-        borderColor: AppTheme.primary
-    }
+    // let CValues = {
+    //     bgColor: AppTheme.primary,
+    //     labelColor: "white",
+    //     borderColor: AppTheme.primary
+    // }
 
-    if (theme == "outlined") {
-        CValues.bgColor = "white"
-        CValues.labelColor = AppTheme.primary
-    }
+    // if (theme == "outlined") {
+    //     CValues.bgColor = "white"
+    //     CValues.labelColor = AppTheme.primary
+    // }
 
-    if (theme == "inverted") {
-        CValues.bgColor = "white"
-        CValues.labelColor = AppTheme.primary
-        CValues.borderColor = "white"
-    }
+    // if (theme == "inverted") {
+    //     CValues.bgColor = "white"
+    //     CValues.labelColor = AppTheme.primary
+    //     CValues.borderColor = "white"
+    // }
 
     return (
         <View
@@ -48,15 +48,15 @@ const PrimaryButton = ({
             ]}>
             <TouchableOpacity
                 style={[{
-                    backgroundColor: CValues.bgColor,
-                    borderRadius: 10,
+                    backgroundColor: theme.green,
+                    borderRadius: 25,
                     justifyContent: "center",
                     alignItems: "center",
                     height: 50,
                     paddingHorizontal: 15,
                     flexDirection: "row",
                     borderWidth: 1,
-                    borderColor: CValues.borderColor,
+                    // borderColor: CValues.borderColor,
                     opacity: disabled ? 0.7 : 1
                 },
                     innerContainerStyle
@@ -66,7 +66,9 @@ const PrimaryButton = ({
                 onPress={onPress}
             >
                 {loading ? (
-                    <ActivityIndicator animating={true} size="small" color={CValues.labelColor} {...loadingProps} />
+                    <ActivityIndicator animating={true} size="small" 
+                    // color={CValues.labelColor} 
+                    {...loadingProps} />
                 ) : (
                     <>
                         {typeof (renderLeftItem) == 'function' && renderLeftItem()}
@@ -74,7 +76,7 @@ const PrimaryButton = ({
                             style={[{
                                 fontSize: 12,
                                 fontFamily: Fonts.bold,
-                                color: CValues.labelColor,
+                                // color: CValues.labelColor,
                                 includeFontPadding: false,
                                 padding: 0,
                             },
