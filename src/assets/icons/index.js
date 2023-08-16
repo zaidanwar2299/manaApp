@@ -17,6 +17,7 @@ export default {
     profileUser:require("./profileUser.png"),
     search:require("./search.png"),
     upArrow:require("./upArrow.png"),
+    menuIconWhite:require("./menuIconWhite.png"),
     
     
 }

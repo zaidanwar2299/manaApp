@@ -9,11 +9,12 @@ import {useNavigation} from '@react-navigation/native';
 import icons from '../../../assets/icons';
 import Routes from '../../../navigation/routes';
 import {Spacer} from '../../../components/Spacer';
+import Fonts from '../../../assets/fonts';
 
 const Register = () => {
   const navigation = useNavigation();
   return (
-    <>
+    <View style={{flex:1, backgroundColor:theme.grey800}}>
       <Spacer height={10} />
       <Header
         containerStyle={{marginLeft: 16}}
@@ -22,12 +23,12 @@ const Register = () => {
           <Image style={AppStyles.image1} source={icons.isBack} />
         )}
       />
-      <Text style={[{...AppStyles.h11}]}>Sign Up</Text>
+      <Text style={[{...AppStyles.h11, fontFamily:Fonts.bold}]}>Sign Up</Text>
       <Spacer height={10} />
       <View style={{paddingHorizontal: 30}}>
         <PrimaryInput
           title="Email"
-          titleStyle={[{...Typo.h2, color: theme.grey100}]}
+          titleStyle={[{...Typo.h2, color: theme.grey100, fontFamily:Fonts.bold}]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
@@ -41,7 +42,7 @@ const Register = () => {
         <PrimaryInput
           secureText
           title="Password"
-          titleStyle={[{...Typo.h2, color: theme.grey100}]}
+          titleStyle={[{...Typo.h2, color: theme.grey100, fontFamily:Fonts.bold}]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
@@ -55,7 +56,7 @@ const Register = () => {
         <PrimaryInput
           secureText
           title="Confrim password"
-          titleStyle={[{...Typo.h2, color: theme.grey100}]}
+          titleStyle={[{...Typo.h2, color: theme.grey100, fontFamily:Fonts.bold}]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
@@ -87,6 +88,7 @@ const Register = () => {
               ...Typo.textButton,
               paddingTop: 15,
               textAlign: 'center',
+              fontFamily:Fonts.regular
             }}>
             {'Already have account?'}
           </Text>
@@ -97,7 +99,7 @@ const Register = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </>
+    </View>
   );
 };
 

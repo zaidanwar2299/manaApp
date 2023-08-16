@@ -3,7 +3,10 @@ const Routes = {
     Register:"Register",
     Home:"Home",
     BottomTabStack:"BottomTabStack",
-    ProfileScreen:"ProfileScreen"
+    ProfileScreen:"ProfileScreen",
+    Contacts:"Contacts",
+    Activity:"Activity",
+    CreateAppointment:"CreateAppointment"
 }
 
 export default Routes

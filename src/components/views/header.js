@@ -2,14 +2,14 @@ import React from 'react';
 import {ActivityIndicator, Pressable, Text, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Fonts from '../../assets/fonts';
-// import {
-//   AntDesign,
-//   Entypo,
-//   Feather,
-//   FontAwesome,
-//   MaterialCommunityIcons,
-//   Octicons,
-// } from '../../assets/vectorIcons';
+import {
+  AntDesign,
+  Entypo,
+  Feather,
+  FontAwesome,
+  MaterialCommunityIcons,
+  Octicons,
+} from '../../assets/vectorIcons';
 import theme from '../../common/theme';
 import {goBack} from '../../navigation/navigation.utils';
 import CustomImage from './customImage';
@@ -103,7 +103,7 @@ const Header = ({
             // borderColor: "grey",
             paddingVertical:5,
             marginTop:insets.top,
-            zIndex:5
+            zIndex:5,
           },
           containerStyle,
         ]}>

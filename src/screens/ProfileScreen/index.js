@@ -50,6 +50,7 @@ const ProfileScreen = () => {
               {
                 ...Typo.profileHeader,
                 padding: 20,
+                fontFamily:Fonts.bold
               },
             ]}>
             Profile
@@ -69,7 +70,7 @@ const ProfileScreen = () => {
           </View>
           <Spacer width={20} />
           <View style={{alignSelf: 'center'}}>
-            <Text style={{color: 'white'}}>Alexey Trentia</Text>
+            <Text style={{color: 'white', fontFamily:Fonts.semiBold}}>Alexey Trentia</Text>
             <Spacer height={7} />
             <Text style={{color: theme.blue}}>Edit</Text>
           </View>

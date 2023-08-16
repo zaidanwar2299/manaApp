@@ -1,13 +1,14 @@
 export const theme = {
   name: 'light',
-  primary: '#2C2F39', // blue
+  primary: '#343843', // blue
   secondary: "#444956",
-  lightBg: "#E0E4FF",
-  blue:"#16B3E1",
   grey100:"#B0B9C7",
   grey200:"#88919F",
+  grey800:"#2C2F39",
+  blue:"#16B3E1",
   green:"#99CF95",
   lightBorder: "#E0E0E0",
+  lightBg: "#E0E4FF",
   text:"#131436",
   shadow: {
     shadowColor: "#000",

@@ -1,15 +1,15 @@
 import { Platform } from 'react-native'
 
 const DEFAULT = {
-  black: 'Montserrat-Black',
-  bold: 'Montserrat-Bold',
-  extraBold: 'Montserrat-ExtraBold',
-  extraLight: 'Montserrat-ExtraLight',
-  light: 'Montserrat-Light',
-  medium: 'Montserrat-Medium',
-  regular: 'Montserrat-Regular',
-  semiBold: 'Montserrat-SemiBold',
-  thin: 'Montserrat-Thin',
+  black: 'Urbanist-Black',
+  bold: 'Urbanist-Bold',
+  extraBold: 'Urbanist-ExtraBold',
+  extraLight: 'Urbanist-ExtraLight',
+  light: 'Urbanist-Light',
+  medium: 'Urbanist-Medium',
+  regular: 'Urbanist-Regular',
+  semiBold: 'Urbanist-SemiBold',
+  thin: 'Urbanist-Thin',
 }
 
 const Fonts = Platform.select({
@@ -18,3 +18,17 @@ const Fonts = Platform.select({
 })
 
 export default Fonts
+
+// const Fonts = {
+//    black: 'Urbanist-Black',
+//   bold: 'Urbanist-Bold',
+//   extraBold: 'Urbanist-ExtraBold',
+//   extraLight: 'Urbanist-ExtraLight',
+//   light: 'Urbanist-Light',
+//   medium: 'Urbanist-Medium',
+//   regular: 'Urbanist-Regular',
+//   semiBold: 'Urbanist-SemiBold',
+//   thin: 'Urbanist-Thin',
+// };
+
+// export default Fonts 

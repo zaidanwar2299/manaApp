@@ -9,11 +9,14 @@ import {useNavigation} from '@react-navigation/native';
 import icons from '../../../assets/icons';
 import Routes from '../../../navigation/routes';
 import {Spacer} from '../../../components/Spacer';
+import Fonts from '../../../assets/fonts';
+// import Fonts from '../../../assets/fonts'; 
 
 const Login = () => {
+
   const navigation = useNavigation();
   return (
-    <>
+    <View style={{flex:1, backgroundColor:theme.grey800}} >
     <Spacer height={10} />
       <Header
         containerStyle={{marginLeft: 16}}
@@ -23,12 +26,12 @@ const Login = () => {
         )}
       />
       {/* <Spacer height={10} /> */}
-      <Text style={[{...AppStyles.h11}]}>Sign In</Text>
+      <Text style={[{...AppStyles.h11, fontFamily:Fonts.bold}]}>Sign In</Text>
       <Spacer height={15} />
       <View style={{paddingHorizontal: 30}}>
         <PrimaryInput
           title="Email"
-          titleStyle={[{...Typo.h2, color: theme.grey100}]}
+          titleStyle={[{...Typo.h2, fontFamily:Fonts.bold, color: theme.grey100}]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
@@ -43,11 +46,12 @@ const Login = () => {
         <PrimaryInput
           secureText
           title="Password"
-          titleStyle={[{...Typo.h2, color: theme.grey100}]}
+          titleStyle={[{...Typo.h2, fontFamily:Fonts.bold, color: theme.grey100}]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
             width: '100%',
+            // fontFamily:Fonts.bold,
           }}
           inputStyle={{color: theme.grey100}}
           placeholderTextColor={theme.grey200}
@@ -77,11 +81,12 @@ const Login = () => {
               ...Typo.textButton,
               paddingTop: 15,
               textAlign: 'center',
+              fontFamily:Fonts.regular
             }}>
-            {'Forgot Password?'}
+            {'Forgot password?'}
           </Text>
           <TouchableOpacity onPress={() => navigation.navigate(Routes.Login)}>
-            <Text style={{color: theme.blue, marginTop: 14}}>
+            <Text style={{color: theme.blue, marginTop: 14, fontFamily:Fonts.regular}}>
               {' Restore access'}
             </Text>
           </TouchableOpacity>
@@ -99,6 +104,7 @@ const Login = () => {
               ...Typo.textButton,
               paddingTop: 15,
               textAlign: 'center',
+              fontFamily:Fonts.regular
             }}>
             {'Don’t have an account?'}
           </Text>
@@ -141,7 +147,7 @@ const Login = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </>
+    </View>
   );
 };
 
