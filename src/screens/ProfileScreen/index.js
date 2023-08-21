@@ -16,6 +16,8 @@ import UnderLine from '../../components/Underline';
 import Header from '../../components/views/header';
 import {Typo} from '../../common/styles';
 import PrimaryButton from '../../components/buttons/primaryButton';
+import Routes from '../../navigation/routes';
+import { useNavigation } from '@react-navigation/native';
 
 const ProfileScreen = () => {
   const ProfileList = [
@@ -38,6 +40,7 @@ const ProfileScreen = () => {
 
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const navigation = useNavigation();
 
   return (
     <View>
@@ -125,8 +128,8 @@ const ProfileScreen = () => {
           />
         </View>
         <UnderLine />
-        {ProfileList.map(item => (
-          <TouchableOpacity>
+        {ProfileList.map((item, index) => (
+          <TouchableOpacity key={index} >
             <Spacer height={15} />
             <View style={[{...styles.spaceBetween, alignItems: 'center'}]}>
               <Text
@@ -160,6 +163,7 @@ const ProfileScreen = () => {
         }}
         containerStyle={{paddingHorizontal: 15}}
         labelStyle={{fontSize: 15, color: 'black'}}
+        onPress={() => navigation.navigate(Routes.Login)}
       />
     </View>
   );

@@ -1,5 +1,12 @@
-import {View, Text, SafeAreaView, Image, TouchableOpacity} from 'react-native';
-import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  Button,
+} from 'react-native';
+import React, {useState} from 'react';
 import PrimaryInput from '../../../components/inputs/primaryInput';
 import theme from '../../../common/theme';
 import Header from '../../../components/views/header';
@@ -11,48 +18,53 @@ import Routes from '../../../navigation/routes';
 import {Spacer} from '../../../components/Spacer';
 import Fonts from '../../../assets/fonts';
 import * as yup from 'yup';
-import { ErrorMessages, SchemaKeys } from '../../../common/constants';
-import { Regex, _isValidate } from '../../../utils/validation.utils';
-// import Fonts from '../../../assets/fonts'; 
+import {ErrorMessages, SchemaKeys} from '../../../common/constants';
+import {Regex, _isValidate} from '../../../utils/validation.utils';
+import FlashMessage from 'react-native-flash-message';
+// import Fonts from '../../../assets/fonts';
 
 const Login = () => {
-
   const navigation = useNavigation();
 
   let [state, _setState] = useState({
-    email: "",
-    password: "",
-    loading: false
-})
+    email: '',
+    password: '',
+    loading: false,
+  });
 
-const setState = (item = {}) => {
+  const setState = (item = {}) => {
     state = {
-        ...state,
-        ...item
-    }
-    _setState({ ...state })
-}
+      ...state,
+      ...item,
+    };
+    _setState({...state});
+  };
 
-const isValidate = () => {
-  let schema = {
+  const isValidate = () => {
+    let schema = {
       [SchemaKeys.Email]: yup.string().required().email(),
-      [SchemaKeys.Password]: yup.string().required().matches(Regex.Password, ErrorMessages.Password),
-  }
-  let values = {
+      [SchemaKeys.Password]: yup
+        .string()
+        .required()
+        .matches(Regex.Password, ErrorMessages.Password),
+    };
+    let values = {
       [SchemaKeys.Email]: state.email,
-      [SchemaKeys.Password]: state.password
-  }
-  console.log("SCHEEMMAAA",values)
-  return _isValidate(schema, values)
-};
+      [SchemaKeys.Password]: state.password,
+    };
+    console.log('SCHEEMMAAA', values);
+    return _isValidate(schema, values);
+  };
 
-const handleLogin = () => {
-  if(!isValidate()) return
-}
+  const handleLogin = () => {
+    if (!isValidate()) return;
+    navigation.navigate(Routes.BottomTabStack);
+  };
 
   return (
-    <View style={{flex:1, backgroundColor:theme.grey800}} >
-    <Spacer height={10} />
+    <View style={{flex: 1, backgroundColor: theme.grey800}}>
+      <Spacer height={10} />
+
       <Header
         containerStyle={{marginLeft: 16}}
         showBack={false}
@@ -61,12 +73,14 @@ const handleLogin = () => {
         )}
       />
       {/* <Spacer height={10} /> */}
-      <Text style={[{...AppStyles.h11, fontFamily:Fonts.bold}]}>Sign In</Text>
+      <Text style={[{...AppStyles.h11, fontFamily: Fonts.bold}]}>Sign In</Text>
       <Spacer height={15} />
       <View style={{paddingHorizontal: 30}}>
         <PrimaryInput
           title="Email"
-          titleStyle={[{...Typo.h2, fontFamily:Fonts.bold, color: theme.grey100}]}
+          titleStyle={[
+            {...Typo.h2, fontFamily: Fonts.bold, color: theme.grey100},
+          ]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
@@ -76,17 +90,17 @@ const handleLogin = () => {
           placeholderTextColor={theme.grey200}
           placeholder={'Enter your email'}
           value={state.email}
-          onChangeText={ (text) => {
-            setState({ email: text })
-            console.log("EMAILLLL",state.email)
-        }}
+          onChangeText={text => {
+            setState({email: text});
+            console.log('EMAILLLL', state.email);
+          }}
         />
-        {/* <Spacer height={10} /> */}
-
         <PrimaryInput
           secureText
           title="Password"
-          titleStyle={[{...Typo.h2, fontFamily:Fonts.bold, color: theme.grey100}]}
+          titleStyle={[
+            {...Typo.h2, fontFamily: Fonts.bold, color: theme.grey100},
+          ]}
           innerContainerStyle={{
             backgroundColor: theme.secondary,
             height: 53,
@@ -97,22 +111,23 @@ const handleLogin = () => {
           placeholderTextColor={theme.grey200}
           placeholder={'Enter password'}
           value={state.password}
-          onChangeText={ (text) => {
-            setState({ password: text })
-            console.log("Password",state.password)
-        }}
+          onChangeText={text => {
+            setState({password: text});
+            console.log('Password', state.password);
+          }}
         />
 
         <Spacer height={25} />
         <PrimaryButton
           label="Sign In"
           innerContainerStyle={{
-          backgroundColor: theme.blue,
+            backgroundColor: theme.blue,
             borderRadius: 25,
             height: 55,
           }}
           onPress={() => navigation.navigate(Routes.BottomTabStack)}
           // onPress={handleLogin}
+          // onPress={() => <FlashMessage message='Nothing' type='' />}
           labelStyle={{fontSize: 15}}
         />
         <View
@@ -127,12 +142,17 @@ const handleLogin = () => {
               ...Typo.textButton,
               paddingTop: 15,
               textAlign: 'center',
-              fontFamily:Fonts.regular
+              fontFamily: Fonts.regular,
             }}>
             {'Forgot password?'}
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate(Routes.Login)}>
-            <Text style={{color: theme.blue, marginTop: 14, fontFamily:Fonts.regular}}>
+          <TouchableOpacity onPress={() => navigation.navigate(Routes.RestoreAccess)}>
+            <Text
+              style={{
+                color: theme.blue,
+                marginTop: 14,
+                fontFamily: Fonts.regular,
+              }}>
               {' Restore access'}
             </Text>
           </TouchableOpacity>
@@ -150,11 +170,12 @@ const handleLogin = () => {
               ...Typo.textButton,
               paddingTop: 15,
               textAlign: 'center',
-              fontFamily:Fonts.regular
+              fontFamily: Fonts.regular,
             }}>
             {'Don’t have an account?'}
           </Text>
-          <TouchableOpacity onPress={() => navigation.navigate(Routes.Register)}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate(Routes.Register)}>
             <Text style={{color: theme.blue, marginTop: 14}}>{' Sign up'}</Text>
           </TouchableOpacity>
         </View>

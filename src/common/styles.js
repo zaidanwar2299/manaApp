@@ -66,14 +66,16 @@ export const AppStyles = StyleSheet.create({
     marginTop: 15,
     fontSize: 20,
     fontFamily: Fonts.regular,
-    color: 'black',
+    color: theme.grey200,
+    textAlign:"center"
   },
   // user profile heading
   h4: {
-    fontSize: 14,
+    marginTop: 10, 
+    fontSize: 16,  
     fontFamily: Fonts.regular,
-    color: 'white',
-    marginTop: 15,
+    color: theme.grey200,
+    textAlign:"center"
   },
   // business detail image style
   image1: {

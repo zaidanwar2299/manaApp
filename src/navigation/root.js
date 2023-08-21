@@ -20,6 +20,8 @@ import ProfileScreen from '../screens/ProfileScreen';
 import Activity from '../screens/activity';
 import Contacts from '../screens/contacts';
 import CreateAppointment from '../screens/createAppointment';
+import RestoreAccess from '../screens/auth/restoreAccess';
+// import MapScreen from '../screens/MapScreen';
 
 // import DrawerStack from "./stacks/drawerStack";
 
@@ -39,15 +41,17 @@ const RootNavigator = () => {
   return (
     <>
       {/* <RootSiblingParent>  */}
-        <Stack.Navigator initialRouteName='CreateAppointment' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='BottomTabStack' screenOptions={{ headerShown: false }}>
           <Stack.Screen name={Routes.BottomTabStack} component={BottomTabStack} />
           <Stack.Screen name={Routes.Login} component={Login} />
           <Stack.Screen name={Routes.Register} component={Register} />
+          <Stack.Screen name={Routes.RestoreAccess} component={RestoreAccess} />
           <Stack.Screen name={Routes.Home} component={Home} />
           <Stack.Screen name={Routes.ProfileScreen} component={ProfileScreen} />
           <Stack.Screen name={Routes.Activity} component={Activity} />
           <Stack.Screen name={Routes.Contacts} component={Contacts} />
           <Stack.Screen name={Routes.CreateAppointment} component={CreateAppointment} />
+          {/* <Stack.Screen name={Routes.MapScreen} component={MapScreen} /> */}
         </Stack.Navigator>
         {/* <FlashMessage
           position="bottom"

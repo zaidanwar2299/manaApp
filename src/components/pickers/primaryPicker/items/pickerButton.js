@@ -91,7 +91,7 @@ const PickerButton = ({
                         <Text
                             style={[
                                 {
-                                    color: label ? "black" : theme.grey200,
+                                    color: label ? theme.grey100 : theme.grey200,
                                     ...Typo.cardCaption,
                                 },
                                 labelStyle,

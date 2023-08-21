@@ -6,7 +6,9 @@ const Routes = {
     ProfileScreen:"ProfileScreen",
     Contacts:"Contacts",
     Activity:"Activity",
-    CreateAppointment:"CreateAppointment"
+    CreateAppointment:"CreateAppointment",
+    RestoreAccess:"RestoreAccess",
+    MapScreen:"MapScreen"
 }
 
 export default Routes

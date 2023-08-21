@@ -6,6 +6,10 @@ import {
   ScrollView,
   Switch,
   StyleSheet,
+  Button,
+  TouchableOpacity,
+  Pressable,
+  TouchableWithoutFeedback,
 } from 'react-native';
 import React, {useState} from 'react';
 import PrimaryInput from '../../components/inputs/primaryInput';
@@ -18,14 +22,63 @@ import PickerButton from '../../components/pickers/primaryPicker/items/pickerBut
 import theme from '../../common/theme';
 import UnderLine from '../../components/Underline';
 import PrimaryButton from '../../components/buttons/primaryButton';
+import _DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '../../components/pickers/dateTimePicker';
+import {destroySibling, showSibling} from '../../utils/modal.utils';
+import Modal from 'react-native-modal';
+import moment from 'moment';
+import {useNavigation} from '@react-navigation/native';
+import Routes from '../../navigation/routes';
+import MapView, { Marker } from 'react-native-maps';
+// import DateTimePicker from '../../components/pickers/dateTimePicker';
 
 const CreateAppointment = () => {
-
-
   const [isPrivate, setIsPrivate] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const togglePrivate = () => setIsPrivate(previousState => !previousState);
   const toggleHidden = () => setIsHidden(previousState => !previousState);
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleDatePicker = () => {
+    setShowDatePicker(!showDatePicker);
+  };
+
+  const handleDateChange = (event, selected) => {
+    setShowDatePicker(false);
+    setModalVisible(false);
+    if (selected) {
+      setSelectedDate(selected);
+    }
+  };
+
+  const DateModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
+  const [date, setDate] = useState(new Date());
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [modalTimeVisible, setModalTimeVisible] = useState(false);
+
+  const onChangeDate = (event, selectedDate) => {
+    const currentDate = selectedDate || date;
+    setShowTimePicker(Platform.OS === 'ios'); // Hide the picker on iOS after selection
+    setDate(currentDate);
+    setModalTimeVisible(false);
+    setShowTimePicker(false);
+  };
+  const toggleTimePicker = () => {
+    setShowTimePicker(!showTimePicker);
+  };
+
+  const TimeModal = () => {
+    setModalTimeVisible(!modalTimeVisible);
+  };
+
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <ScrollView>
@@ -39,9 +92,21 @@ const CreateAppointment = () => {
             placeholder="Enter appointment name"
           />
           <PrimaryInput title="Notes (optional)" placeholder="Enter a note" />
+
           <PickerButton
+            onPress={() => {
+              // toggleDatePicker();
+              setShowDatePicker(true)
+              setModalVisible(true)
+              // DateModal();
+            }}
             placeholder="Saturday, 2 Jun"
             title="Date"
+            label={selectedDate.toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            })}
             showDownIcon={false}
             renderRightItem={() => (
               <Image
@@ -50,6 +115,35 @@ const CreateAppointment = () => {
               />
             )}
           />
+
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            activeOpacity={0}
+            onRequestClose={() => {
+              // setModalVisible(!modalVisible);
+              setModalTimeVisible(false)
+            }}
+            swipeDirection={['down']}
+            onSwipeComplete={()=>setModalVisible(false)}
+           >
+            <View
+              style={{
+                ...styles.modalDesign,
+              }}>
+              <View style={{width: '100%'}}>
+                {showDatePicker && (
+                  <_DateTimePicker
+                    value={selectedDate}
+                    mode="date"
+                    display="inline"
+                    onChange={handleDateChange}
+                  />
+                )}
+              </View>
+            </View>
+          </Modal>
 
           <PickerButton
             placeholder="Select location"
@@ -61,11 +155,17 @@ const CreateAppointment = () => {
                 style={{...AppStyles.pickerIconStyle}}
               />
             )}
+            // onPress={}
           />
 
           <PickerButton
+            onPress={() => {
+              toggleTimePicker();
+              TimeModal();
+            }}
             placeholder="6:00 am - 7:00 am"
             title="Time"
+            label={moment(date).format('hh:mm A')}
             showDownIcon={false}
             renderRightItem={() => (
               <Image
@@ -74,6 +174,36 @@ const CreateAppointment = () => {
               />
             )}
           />
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalTimeVisible}
+            activeOpacity={0}
+            onRequestClose={() => {
+              setModalTimeVisible(!modalTimeVisible);
+              setShowTimePicker(false);
+              toggleTimePicker();
+              TimeModal();
+            }}
+            onSwipeComplete={TimeModal}
+            onModalHide={TimeModal}>
+            <View
+              style={{
+                ...styles.modalTimeDesign,
+              }}>
+              <View style={{width: '100%'}}>
+                {showTimePicker && (
+                  <_DateTimePicker
+                    mode={'time'}
+                    value={new Date()}
+                    is24Hour={true}
+                    display="spinner"
+                    onChange={onChangeDate}
+                  />
+                )}
+              </View>
+            </View>
+          </Modal>
 
           <PickerButton
             placeholder="Jane Doe"
@@ -125,7 +255,10 @@ const CreateAppointment = () => {
             />
           </View>
           <Spacer height={20} />
-          <PrimaryButton label={'Create Appointment'} />
+          <PrimaryButton
+            label={'Create Appointment'}
+            onPress={() => navigation.navigate(Routes.Home)}
+          />
           <Spacer height={20} />
         </View>
       </ScrollView>
@@ -143,6 +276,28 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: 'white',
     fontFamily: Fonts.regular,
+  },
+  modalDesign: {
+    width: '100%',
+    padding: 30,
+    height: '39%',
+    bottom: -18,
+    backgroundColor: 'white',
+    position: 'absolute',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    paddingBottom: 20,
+  },
+  modalTimeDesign: {
+    width: '100%',
+    padding: 30,
+    height: '28%',
+    bottom: -18,
+    backgroundColor: 'white',
+    position: 'absolute',
+    borderTopRightRadius: 30,
+    borderTopLeftRadius: 30,
+    paddingBottom: 20,
   },
 });
 

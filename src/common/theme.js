@@ -5,11 +5,13 @@ export const theme = {
   grey100:"#B0B9C7",
   grey200:"#88919F",
   grey800:"#2C2F39",
+  greyCalendar:"#646B7C",
   blue:"#16B3E1",
   green:"#99CF95",
   lightBorder: "#E0E0E0",
   lightBg: "#E0E4FF",
   darkGreen:"#31D158",
+  pink:"#F551D1",
   text:"#131436",
   shadow: {
     shadowColor: "#000",

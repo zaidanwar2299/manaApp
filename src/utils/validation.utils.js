@@ -1,7 +1,9 @@
 import { reverseObjKeys, trimObjValues } from "./common.utils";
 import * as yup from 'yup';
 import { showErrorMsg } from "./flashMessage.utils";
+import { Text } from "react-native";
 // import { showErrorMsg } from "./flashMessage.utils";
+import { showMessage } from "react-native-flash-message"
 
 export const Regex = {
   // // Password length must be atleast 8, with one uppercase letter, one lowercase letter,one special character and one number
@@ -77,8 +79,14 @@ export const _isValidate = (schema: Object, values: Object, showError = true) =>
     return true
   } catch (err) {
     if (showError) {
-      showErrorMsg(err.message)
-      console.log("ERRROORRR",err.message)
+      console.log('testing');
+      // showErrorMsg(err.message)
+      showMessage({
+        message: 'test',
+        type: "danger",
+      })
+      // console.log("ERRROORRR",err.message)
+      // <Text>{"svfdvfsvbg"}</Text>
     }
     return false
   }

@@ -22,4 +22,8 @@ export default {
     circlePlus:require("./circlePlus.png"),
     clock:require("./clock.png"),
     location:require("./location.png"),
+    calendarPic:require("./calendarPic.png"),
+    locationWhite:require("./locationWhite.png"),
+    
+    
 }
