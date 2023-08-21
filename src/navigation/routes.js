@@ -8,7 +8,8 @@ const Routes = {
     Activity:"Activity",
     CreateAppointment:"CreateAppointment",
     RestoreAccess:"RestoreAccess",
-    MapScreen:"MapScreen"
+    MapScreen:"MapScreen",
+    AddLocation:"AddLocation"
 }
 
 export default Routes

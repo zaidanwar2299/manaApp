@@ -21,6 +21,7 @@ import Activity from '../screens/activity';
 import Contacts from '../screens/contacts';
 import CreateAppointment from '../screens/createAppointment';
 import RestoreAccess from '../screens/auth/restoreAccess';
+import AddLocation from '../screens/createAppointment/sections/addLocation';
 // import MapScreen from '../screens/MapScreen';
 
 // import DrawerStack from "./stacks/drawerStack";
@@ -51,6 +52,7 @@ const RootNavigator = () => {
           <Stack.Screen name={Routes.Activity} component={Activity} />
           <Stack.Screen name={Routes.Contacts} component={Contacts} />
           <Stack.Screen name={Routes.CreateAppointment} component={CreateAppointment} />
+          <Stack.Screen name={Routes.AddLocation} component={AddLocation} />
           {/* <Stack.Screen name={Routes.MapScreen} component={MapScreen} /> */}
         </Stack.Navigator>
         {/* <FlashMessage

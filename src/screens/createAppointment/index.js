@@ -147,6 +147,7 @@ const CreateAppointment = () => {
 
           <PickerButton
             placeholder="Select location"
+            onPress={()=> navigation.navigate(Routes.AddLocation)}
             title="Location"
             showDownIcon={false}
             renderRightItem={() => (
