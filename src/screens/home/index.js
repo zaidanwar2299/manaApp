@@ -39,6 +39,10 @@ import {Swipeable} from 'react-native-gesture-handler';
 import CalendarArray from '../../utils/CalendarArray';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/routes';
+import GroupCheckBox from '../../components/views/groupCheckBox';
+import BoxSelector from '../../components/boxSelector';
+import Checkbox from '../../components/views/groupCheckBox/items/checkBox';
+import {Appointment} from '../../common/constants';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -282,6 +286,21 @@ const Home = () => {
     timeSlots.push(`${hour} ${ampm}`);
   }
 
+  let [state, _setState] = useState({
+    appointment: null,
+    // ...params.filter_item
+  });
+
+  console.log('SELECTED STATE::::::::', state.selected);
+
+  const setState = (item = {}) => {
+    state = {
+      ...state,
+      ...item,
+    };
+    _setState({...state});
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: theme.grey800}}>
       <Header
@@ -374,45 +393,45 @@ const Home = () => {
               {'Show Appointments'}
             </Text>
             <View style={{marginTop: 20}}></View>
-            <View style={{...styles.appointmentBody}}>
-              <View style={{paddingHorizontal: 20, ...styles.spaceBetween}}>
-                <View style={{...styles.flexRow}}>
-                  <View style={[styles.dot]} />
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontFamily: Fonts.regular,
-                      fontSize: 15,
-                    }}>
-                    {'Work Calendar'}
-                  </Text>
-                </View>
 
-                <View>
-                  <Text>{'Check'}</Text>
-                </View>
-              </View>
-            </View>
-            <Spacer height={20} />
-            <View style={{...styles.appointmentBody}}>
-              <View style={{paddingHorizontal: 20, ...styles.spaceBetween}}>
-                <View style={{...styles.flexRow}}>
-                  <View style={{...styles.dot, backgroundColor: theme.green}} />
-                  <Text
-                    style={{
-                      color: 'white',
-                      fontFamily: Fonts.regular,
-                      fontSize: 15,
-                    }}>
-                    {'Travel Calendar'}
-                  </Text>
-                </View>
+            {/* Appointment Body */}
+            <>
+              {Appointment.map((item, index) => (
+                <View key={index} style={{...styles.appointmentBody}}>
+                  <View style={{paddingHorizontal: 20, ...styles.spaceBetween}}>
+                    <View style={{...styles.flexRow}}>
+                      <View
+                        style={{...styles.dot, backgroundColor: item.color}}
+                      />
+                      <Text
+                        style={{
+                          color: 'white',
+                          fontFamily: Fonts.regular,
+                          fontSize: 15,
+                          alignSelf: 'center',
+                        }}>
+                        {item.name}
+                      </Text>
+                    </View>
 
-                <View>
-                  <Text>{'Check'}</Text>
+                    <View>
+                      <Checkbox
+                        value={state.appointment}
+                        onChange={value => {
+                          setState({appointment: value});
+                        }}
+                      />
+                    </View>
+                  </View>
                 </View>
-              </View>
-            </View>
+              ))}
+            </>
+            <Spacer height={50} />
+            <PrimaryButton
+              innerContainerStyle={{width: '90%', alignSelf: 'center'}}
+              labelStyle={{fontSize: 15, fontFamily: Fonts.bold}}
+              label={'Save'}
+            />
           </View>
         </View>
       </Modal>
@@ -556,11 +575,12 @@ const styles = StyleSheet.create({
     width: '90%',
     backgroundColor: theme.secondary,
     borderRadius: 15,
+    marginBottom: 20,
   },
   dot: {
     height: 12,
     width: 12,
-    backgroundColor: theme.pink,
+    // backgroundColor: theme.pink,
     borderRadius: 50,
     alignSelf: 'center',
     marginRight: 10,

@@ -6,16 +6,12 @@ import {
   ScrollView,
   Switch,
   StyleSheet,
-  Button,
   TouchableOpacity,
-  Pressable,
-  TouchableWithoutFeedback,
 } from 'react-native';
 import React, {createRef, useEffect, useState} from 'react';
 import PrimaryInput from '../../components/inputs/primaryInput';
 import {Spacer} from '../../components/Spacer';
-import Header from '../../components/views/header';
-import {AppStyles, Typo} from '../../common/styles';
+import {AppStyles} from '../../common/styles';
 import Fonts from '../../assets/fonts';
 import icons from '../../assets/icons';
 import PickerButton from '../../components/pickers/primaryPicker/items/pickerButton';
@@ -23,17 +19,13 @@ import theme from '../../common/theme';
 import UnderLine from '../../components/Underline';
 import PrimaryButton from '../../components/buttons/primaryButton';
 import _DateTimePicker from '@react-native-community/datetimepicker';
-import DateTimePicker from '../../components/pickers/dateTimePicker';
-import {destroySibling, showSibling} from '../../utils/modal.utils';
 import Modal from 'react-native-modal';
 import moment from 'moment';
-import {CommonActions, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/routes';
-import MapView, {Marker} from 'react-native-maps';
 import {navigate} from '../../navigation/navigation.utils';
 import Services from '../../services';
 import Geocoder from 'react-native-geocoding';
-// import DateTimePicker from '../../components/pickers/dateTimePicker';
 
 const CreateAppointment = () => {
   const [isPrivate, setIsPrivate] = useState(false);
@@ -50,16 +42,16 @@ const CreateAppointment = () => {
   };
 
   const handleDateChange = (event, selected) => {
-    setShowDatePicker(false);
-    setModalVisible(false);
+    // setShowDatePicker(false);
+    // setModalVisible(false);
     if (selected) {
       setSelectedDate(selected);
     }
   };
 
-  const DateModal = () => {
-    setModalVisible(!modalVisible);
-  };
+  // const DateModal = () => {
+  //   setModalVisible(!modalVisible);
+  // };
 
 
   // For Time Picker
@@ -69,10 +61,8 @@ const CreateAppointment = () => {
 
   const onChangeDate = (event, selectedDate) => {
     const currentDate = selectedDate || date;
-    setShowTimePicker(Platform.OS === 'ios'); // Hide the picker on iOS after selection
+    setShowTimePicker(Platform.OS === 'ios'); 
     setDate(currentDate);
-    // setModalTimeVisible(false);
-    // setShowTimePicker(false);
   };
   const toggleTimePicker = () => {
     setShowTimePicker(!showTimePicker);
@@ -96,12 +86,6 @@ const CreateAppointment = () => {
     };
     _setState({...state});
   };
-
-  useEffect(() => {
-    console.log('STATATTTETEE', state);
-  }, []);
-
-  const navigationRef = createRef();
 
    // getting user location and address
    useEffect(() => {
@@ -211,7 +195,6 @@ const CreateAppointment = () => {
                 style={{...AppStyles.pickerIconStyle}}
               />
             )}
-            // onPress={}
           />
 
           <PickerButton
