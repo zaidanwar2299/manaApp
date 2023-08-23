@@ -19,14 +19,11 @@ import {pop} from '../../../../navigation/navigation.utils';
 import Services from '../../../../services';
 import {setLocation} from '../../../../store/actions/user';
 import {showErrorMsg} from '../../../../utils/flashMessage.utils';
-import {AntDesign} from '../../../../assets/vectorIcons';
 import Config from '../../../../common/config';
 import Fonts from '../../../../assets/fonts';
-import icons from '../../../../assets/icons';
-import {useNavigation} from '@react-navigation/native';
-import Routes from '../../../../navigation/routes';
-import Ionicons from "react-native-vector-icons/Ionicons"
-import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  AntDesign, Ionicons
+} from "../../../../assets/vectorIcons";
 
 const getAddressParts = addressComponents => {
   let _parts = {
@@ -76,13 +73,9 @@ const INITIAL_STATE = {
   loading: false,
 };
 
-console.log('INITIAL_STATE <><><><><><><><><><><>', INITIAL_STATE);
-
 const AddLocation = props => {
-  const navigation = useNavigation();
   const {onSelect = () => {}, _value} = props.route.params;
 
-  // console.log("PROPS>ROUTE<PARAMS",props.route.params)
 
   let [state, _setState] = useState({
     ...INITIAL_STATE,
@@ -132,7 +125,6 @@ const AddLocation = props => {
 
   const handleMapPress = async item => {
     const {coordinate} = item.nativeEvent;
-    console.log("coordinate<><><>???????????//",coordinate)
     setState({loading: true});
     Geocoder.from({
       latitude: coordinate.latitude,
@@ -149,7 +141,6 @@ const AddLocation = props => {
       })
       .catch(err => {
         showErrorMsg(err?.origin?.error_message);
-        console.log('ERREEEE', err);
       })
       .finally(() => {
         setState({loading: false});
@@ -192,11 +183,11 @@ const AddLocation = props => {
       dispatch(setLocation(res));
     });
   }, []);
+  
 
   return (
     <>
       <Header title={'Select Location'} showBack />
-      <Icon name="heart" size={30} color="#900" />
       <View
         style={{
           flexGrow: 1,
@@ -261,7 +252,7 @@ const AddLocation = props => {
           renderLeftButton={() => {
             return (
               <Ionicons
-                name="finger-print"
+                name="search-outline"
                 size={24}
                 color={'grey'}
                 style={{
@@ -282,29 +273,17 @@ const AddLocation = props => {
             }
             if (state.address) {
               return (
-                // <Image
-                //   source={icons.bellIcon}
-                //   size={5}
-                //   color={theme.primary}
-                //   onPress={() => {
-                //     setState({...INITIAL_STATE});
-                //   }}
-                //   style={{
-                //     paddingHorizontal: 2,
-                //     paddingTop: 3,
-                //   }}
-                // />
                 <AntDesign
-                    name="closecircle"
-                    size={20}
-                    color={theme.primary}
-                    onPress={() => {
-                        setState({ ...INITIAL_STATE });
-                    }}
-                    style={{
-                        paddingHorizontal: 2,
-                        paddingTop: 3,
-                    }}
+                  name="closecircle"
+                  size={20}
+                  color={theme.primary}
+                  onPress={() => {
+                    setState({...INITIAL_STATE});
+                  }}
+                  style={{
+                    paddingHorizontal: 2,
+                    paddingTop: 3,
+                  }}
                 />
               );
             }

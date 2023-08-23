@@ -31,6 +31,8 @@ import {CommonActions, useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/routes';
 import MapView, {Marker} from 'react-native-maps';
 import {navigate} from '../../navigation/navigation.utils';
+import Services from '../../services';
+import Geocoder from 'react-native-geocoding';
 // import DateTimePicker from '../../components/pickers/dateTimePicker';
 
 const CreateAppointment = () => {
@@ -59,6 +61,8 @@ const CreateAppointment = () => {
     setModalVisible(!modalVisible);
   };
 
+
+  // For Time Picker
   const [date, setDate] = useState(new Date());
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [modalTimeVisible, setModalTimeVisible] = useState(false);
@@ -67,8 +71,8 @@ const CreateAppointment = () => {
     const currentDate = selectedDate || date;
     setShowTimePicker(Platform.OS === 'ios'); // Hide the picker on iOS after selection
     setDate(currentDate);
-    setModalTimeVisible(false);
-    setShowTimePicker(false);
+    // setModalTimeVisible(false);
+    // setShowTimePicker(false);
   };
   const toggleTimePicker = () => {
     setShowTimePicker(!showTimePicker);
@@ -98,6 +102,22 @@ const CreateAppointment = () => {
   }, []);
 
   const navigationRef = createRef();
+
+   // getting user location and address
+   useEffect(() => {
+    Services.Location.getLocation().then(res => {
+      Geocoder.from(res.latitude, res.longitude).then(res2 => {
+        setState({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude,
+            address: res2.results[0]?.formatted_address || '--',
+            name: '',
+          },
+        });
+      });
+    });
+  }, []);
 
   return (
     <SafeAreaView>
@@ -236,7 +256,7 @@ const CreateAppointment = () => {
                   {showTimePicker && (
                     <_DateTimePicker
                       mode={'time'}
-                      value={new Date()}
+                      value={ date ? date : new Date()}
                       is24Hour={true}
                       display="spinner"
                       onChange={onChangeDate}

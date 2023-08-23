@@ -26,7 +26,6 @@ const DateTimePicker = (props) => {
 
   useEffect(() => {
       setState({ value: _value })
-      // console.log("State.Value><><><><><><><><><><><><>",state.value)
   }, [_value])
 
   return (

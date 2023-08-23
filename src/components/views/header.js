@@ -117,20 +117,17 @@ const Header = ({
             zIndex: 10,
           }}>
           {showBack && (
-            // <HCustomButton
-            //   onPress={goBack}
-            //   {...buttonProps}
-            //   iconProps={{
-            //     name: 'chevron-left',
-            //     //  iconType: "Entypo",
-            //     size: 30,
-            //     ...buttonProps?.iconProps,
-            //   }}
-            // />
-            <TouchableOpacity onPress={goBack} >
-
-              <Image source={icons.isBack} style={{height:30, width:30, resizeMode:"contain"}} />
-            </TouchableOpacity>
+            <HCustomButton
+              onPress={goBack}
+              {...buttonProps}
+              iconProps={{
+                name: 'chevron-left',
+                //  iconType: "Entypo",
+                size: 30,
+                ...buttonProps?.iconProps,
+                color:"white"
+              }}
+            />
           )}
           {typeof renderLeftItem == 'function' && renderLeftItem()}
         </View>

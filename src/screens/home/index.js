@@ -450,7 +450,7 @@ const Home = () => {
             <TimeSlot key={index} time={time} newIndex={index} />
             // setMainIndex(index)
           ))}
-          <Spacer height={25} />
+          <Spacer height={2} />
         </ScrollView>
       </CalendarProvider>
     </View>
