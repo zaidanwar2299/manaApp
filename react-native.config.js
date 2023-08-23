@@ -10,6 +10,11 @@ module.exports = {
         }
       }
     },
+      'react-native-vector-icons': {
+        platforms: {
+          ios: null,
+        },
+      },
     assets: ['./src/assets/fonts/'],
   }
   

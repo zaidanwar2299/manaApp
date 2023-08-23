@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActivityIndicator, Pressable, Text, View} from 'react-native';
+import {ActivityIndicator, Image, Pressable, Text, TouchableOpacity, View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Fonts from '../../assets/fonts';
 import {
@@ -15,6 +15,7 @@ import {goBack} from '../../navigation/navigation.utils';
 import CustomImage from './customImage';
 import {SafeAreaProvider, SafeAreaView} from 'react-native-safe-area-context';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import icons from '../../assets/icons';
 
 // header custom button
 export const HCustomButton = ({
@@ -116,16 +117,20 @@ const Header = ({
             zIndex: 10,
           }}>
           {showBack && (
-            <HCustomButton
-              onPress={goBack}
-              {...buttonProps}
-              iconProps={{
-                name: 'chevron-left',
-                //  iconType: "Entypo",
-                size: 30,
-                ...buttonProps?.iconProps,
-              }}
-            />
+            // <HCustomButton
+            //   onPress={goBack}
+            //   {...buttonProps}
+            //   iconProps={{
+            //     name: 'chevron-left',
+            //     //  iconType: "Entypo",
+            //     size: 30,
+            //     ...buttonProps?.iconProps,
+            //   }}
+            // />
+            <TouchableOpacity onPress={goBack} >
+
+              <Image source={icons.isBack} style={{height:30, width:30, resizeMode:"contain"}} />
+            </TouchableOpacity>
           )}
           {typeof renderLeftItem == 'function' && renderLeftItem()}
         </View>
@@ -159,7 +164,7 @@ const Header = ({
               {
                 fontSize: 17,
                 fontFamily: Fonts.bold,
-                color: 'black',
+                color: 'white',
               },
               titleProps.style,
             ]}

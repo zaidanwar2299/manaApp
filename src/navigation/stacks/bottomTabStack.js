@@ -44,7 +44,7 @@ const BottomTabStack = () => {
               focusItem || route.name == Routes.CreateAppointment
                 ? icons.menuIcon
                 : icons.menuIconWhite;
-            console.log('Very Very Focused', focusItem);
+            // console.log('Very Very Focused', focusItem);
             tabLabel = '';
           } else if (route.name == Routes.Activity) {
             tabIcon = icons.activity;

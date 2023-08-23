@@ -99,6 +99,7 @@ export const getLocation = async () => {
     const result = await hasLocationPermission();
     if (result == "granted") {
       const coords = await getCurrentPosition();
+    //   console.log("CRRRRROROROOROROORORO",coords)
       return coords;
     }
   };

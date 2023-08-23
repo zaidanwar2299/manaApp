@@ -11,7 +11,7 @@ import {
   Pressable,
   TouchableWithoutFeedback,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {createRef, useEffect, useState} from 'react';
 import PrimaryInput from '../../components/inputs/primaryInput';
 import {Spacer} from '../../components/Spacer';
 import Header from '../../components/views/header';
@@ -27,9 +27,10 @@ import DateTimePicker from '../../components/pickers/dateTimePicker';
 import {destroySibling, showSibling} from '../../utils/modal.utils';
 import Modal from 'react-native-modal';
 import moment from 'moment';
-import {useNavigation} from '@react-navigation/native';
+import {CommonActions, useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/routes';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
+import {navigate} from '../../navigation/navigation.utils';
 // import DateTimePicker from '../../components/pickers/dateTimePicker';
 
 const CreateAppointment = () => {
@@ -43,7 +44,7 @@ const CreateAppointment = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const toggleDatePicker = () => {
-    setShowDatePicker(!showDatePicker);
+    setModalVisible(!modalVisible);
   };
 
   const handleDateChange = (event, selected) => {
@@ -75,9 +76,28 @@ const CreateAppointment = () => {
 
   const TimeModal = () => {
     setModalTimeVisible(!modalTimeVisible);
+    setShowTimePicker(!showTimePicker);
   };
 
   const navigation = useNavigation();
+
+  let [state, _setState] = useState({
+    location: null,
+  });
+
+  const setState = (item = {}) => {
+    state = {
+      ...state,
+      ...item,
+    };
+    _setState({...state});
+  };
+
+  useEffect(() => {
+    console.log('STATATTTETEE', state);
+  }, []);
+
+  const navigationRef = createRef();
 
   return (
     <SafeAreaView>
@@ -96,8 +116,8 @@ const CreateAppointment = () => {
           <PickerButton
             onPress={() => {
               // toggleDatePicker();
-              setShowDatePicker(true)
-              setModalVisible(true)
+              setShowDatePicker(true);
+              setModalVisible(true);
               // DateModal();
             }}
             placeholder="Saturday, 2 Jun"
@@ -123,31 +143,46 @@ const CreateAppointment = () => {
             activeOpacity={0}
             onRequestClose={() => {
               // setModalVisible(!modalVisible);
-              setModalTimeVisible(false)
+              setModalTimeVisible(false);
             }}
-            swipeDirection={['down']}
-            onSwipeComplete={()=>setModalVisible(false)}
-           >
-            <View
-              style={{
-                ...styles.modalDesign,
-              }}>
-              <View style={{width: '100%'}}>
-                {showDatePicker && (
-                  <_DateTimePicker
-                    value={selectedDate}
-                    mode="date"
-                    display="inline"
-                    onChange={handleDateChange}
-                  />
-                )}
+            // swipeDirection={['down']}
+            // onSwipeComplete={() => setModalVisible(false)}
+          >
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+              onPress={toggleDatePicker}>
+              <View
+                style={{
+                  ...styles.modalDesign,
+                }}>
+                <View style={{width: '100%'}}>
+                  {showDatePicker && (
+                    <_DateTimePicker
+                      value={selectedDate}
+                      mode="date"
+                      display="inline"
+                      onChange={handleDateChange}
+                    />
+                  )}
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Modal>
 
           <PickerButton
             placeholder="Select location"
-            onPress={()=> navigation.navigate(Routes.AddLocation)}
+            label={state.location?.address}
+            onPress={() => {
+              navigate(Routes.AddLocation, {
+                  onSelect: (item) => {
+                      setState({
+                          location: item
+                      })
+                  },
+                  _value: state.location
+              })
+          }}
             title="Location"
             showDownIcon={false}
             renderRightItem={() => (
@@ -181,29 +216,35 @@ const CreateAppointment = () => {
             visible={modalTimeVisible}
             activeOpacity={0}
             onRequestClose={() => {
-              setModalTimeVisible(!modalTimeVisible);
-              setShowTimePicker(false);
-              toggleTimePicker();
-              TimeModal();
+              setModalTimeVisible(false);
+              // setShowTimePicker(false);
+              // toggleTimePicker();
+              // TimeModal();
             }}
-            onSwipeComplete={TimeModal}
-            onModalHide={TimeModal}>
-            <View
-              style={{
-                ...styles.modalTimeDesign,
-              }}>
-              <View style={{width: '100%'}}>
-                {showTimePicker && (
-                  <_DateTimePicker
-                    mode={'time'}
-                    value={new Date()}
-                    is24Hour={true}
-                    display="spinner"
-                    onChange={onChangeDate}
-                  />
-                )}
+            // onSwipeComplete={TimeModal}
+            // onModalHide={TimeModal}
+          >
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}
+              onPress={TimeModal}>
+              <View
+                style={{
+                  ...styles.modalTimeDesign,
+                }}>
+                <View style={{width: '100%'}}>
+                  {showTimePicker && (
+                    <_DateTimePicker
+                      mode={'time'}
+                      value={new Date()}
+                      is24Hour={true}
+                      display="spinner"
+                      onChange={onChangeDate}
+                    />
+                  )}
+                </View>
               </View>
-            </View>
+            </TouchableOpacity>
           </Modal>
 
           <PickerButton

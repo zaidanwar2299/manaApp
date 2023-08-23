@@ -31,15 +31,24 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from './src/screens/auth/login';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import theme from './src/common/theme';
+import { Provider } from 'react-redux';
+import { store } from './src/store';
+import { navigationRef } from './src/navigation/navigation.utils';
+import Geocoder from 'react-native-geocoding';
+import Config from './src/common/config';
 
 const Tab = createBottomTabNavigator();
 
 const Stack  = createStackNavigator()
 
+Geocoder.init(Config.GOOGLE_MAP_API_KEY);
+
 function App() {
   return (
     <SafeAreaProvider>
+      <Provider store={store} >
       <NavigationContainer 
+      ref={navigationRef}
       theme={{
         colors: {
           background: theme.primary,
@@ -52,6 +61,7 @@ function App() {
       <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator> */}
       </NavigationContainer>
+      </Provider>
     </SafeAreaProvider>
   );
 }

@@ -52,7 +52,7 @@ const Login = () => {
       [SchemaKeys.Email]: state.email,
       [SchemaKeys.Password]: state.password,
     };
-    console.log('SCHEEMMAAA', values);
+    // console.log('SCHEEMMAAA', values);
     return _isValidate(schema, values);
   };
 
