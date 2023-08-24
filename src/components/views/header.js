@@ -88,7 +88,8 @@ const Header = ({
   renderLeftItem,
   containerStyle,
   buttonProps,
-  onTouchEnd
+  onTouchEnd,
+  titleStyle
 }) => {
   const insets = useSafeAreaInsets();
 
@@ -163,6 +164,7 @@ const Header = ({
                 fontFamily: Fonts.bold,
                 color: 'white',
               },
+              titleStyle,
               titleProps.style,
             ]}
             numberOfLines={1}>

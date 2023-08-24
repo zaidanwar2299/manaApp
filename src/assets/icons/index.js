@@ -24,6 +24,11 @@ export default {
     location:require("./location.png"),
     calendarPic:require("./calendarPic.png"),
     locationWhite:require("./locationWhite.png"),
+    calendarPlus:require("./calendarPlus.png"),
+    PersonPlus:require("./PersonPlus.png"),
+    settings:require("./settings.png"),
+    downArrow:require("./downArrow.png"),
+    
     
     
 }

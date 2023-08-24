@@ -9,7 +9,8 @@ const Routes = {
     CreateAppointment:"CreateAppointment",
     RestoreAccess:"RestoreAccess",
     MapScreen:"MapScreen",
-    AddLocation:"AddLocation"
+    AddLocation:"AddLocation",
+    ContactDetail:"ContactDetail"
 }
 
 export default Routes
