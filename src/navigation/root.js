@@ -26,6 +26,8 @@ import ContactDetail from '../screens/contacts/sections/contactDetail';
 import ContactSetting from '../screens/contacts/sections/ContactSetting';
 import AddContacts from '../screens/addContacts';
 import InviteUser from '../screens/addContacts/sections/inviteUser';
+import CalendarGroup from '../screens/calendarGroup';
+import CreateCalendarGroup from '../screens/createCalendarGroup';
 // import MapScreen from '../screens/MapScreen';
 
 // import DrawerStack from "./stacks/drawerStack";
@@ -61,6 +63,8 @@ const RootNavigator = () => {
           <Stack.Screen name={Routes.ContactSetting} component={ContactSetting} />
           <Stack.Screen name={Routes.AddContacts} component={AddContacts} />
           <Stack.Screen name={Routes.InviteUser} component={InviteUser} />
+          <Stack.Screen name={Routes.CalendarGroup} component={CalendarGroup} />
+          <Stack.Screen name={Routes.CreateCalendarGroup} component={CreateCalendarGroup} />
           {/* <Stack.Screen name={Routes.MapScreen} component={MapScreen} /> */}
         </Stack.Navigator>
         {/* <FlashMessage

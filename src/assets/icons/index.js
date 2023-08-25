@@ -32,4 +32,11 @@ export default {
     greenTick:require("./greenTick.png"),
     profilePlus:require("./profilePlus.png"),
     successTick:require("./successTick.png"),
+    profile1:require("./profile1.png"),
+    profile2:require("./profile2.png"),
+    profile3:require("./profile3.png"),
+    profile4:require("./profile4.png"),
+
+
+    
 }

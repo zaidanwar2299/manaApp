@@ -1,3 +1,4 @@
+import icons from '../assets/icons';
 import theme from './theme';
 
 export const ErrorMessages = {
@@ -175,3 +176,49 @@ export const ContactAddedList = [
     added: false,
   },
 ];
+
+export const ProfileList = [
+  {
+    id:1,
+    image: icons.profile1
+  },
+  {
+    id:2,
+    image: icons.profile2
+  },
+  {
+    id:3,
+    image: icons.profile3
+  },
+  {
+    id:4,
+    image: icons.profile4
+  },
+  {
+    id:5,
+    image: icons.profilePhoto
+  },
+
+]
+
+
+export const calendarList = [
+  {
+    id:1,
+    name:"Work Calendar",
+    members:8,
+    color: theme.pink,
+  },
+  {
+    id:2,
+    name:"Travel Calendar",
+    members:20,
+    color: theme.green,
+  },
+  {
+    id:3,
+    name:"Calendar group with a long name",
+    members:0,
+    color: theme.blue,
+  },
+]

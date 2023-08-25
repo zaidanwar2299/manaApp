@@ -18,6 +18,7 @@ import {Typo} from '../../common/styles';
 import PrimaryButton from '../../components/buttons/primaryButton';
 import Routes from '../../navigation/routes';
 import { useNavigation } from '@react-navigation/native';
+import { navigate } from '../../navigation/navigation.utils';
 
 const ProfileScreen = () => {
   const ProfileList = [
@@ -35,6 +36,7 @@ const ProfileScreen = () => {
       id: 3,
       leftItem: 'My Calendars (2)',
       RightItem: '2',
+      routeName: Routes.CalendarGroup
     },
   ];
 
@@ -129,7 +131,7 @@ const ProfileScreen = () => {
         </View>
         <UnderLine />
         {ProfileList.map((item, index) => (
-          <TouchableOpacity key={index} >
+          <TouchableOpacity key={index} onPress={()=> navigate(item.routeName)} >
             <Spacer height={15} />
             <View style={[{...styles.spaceBetween, alignItems: 'center'}]}>
               <Text

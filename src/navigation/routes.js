@@ -13,7 +13,9 @@ const Routes = {
     ContactDetail:"ContactDetail",
     ContactSetting:"ContactSetting",
     AddContacts:"AddContacts",
-    InviteUser:"InviteUser"
+    InviteUser:"InviteUser",
+    CalendarGroup:"CalendarGroup",
+    CreateCalendarGroup:"CreateCalendarGroup",
 }
 
 export default Routes

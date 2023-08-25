@@ -18,6 +18,7 @@ import {Spacer} from '../../components/Spacer';
 import Contacts from '../../screens/contacts';
 import Activity from '../../screens/activity';
 import CreateAppointment from '../../screens/createAppointment';
+import AddContacts from '../../screens/addContacts';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -53,6 +54,10 @@ const BottomTabStack = () => {
             tabIcon = icons.profileUser;
             tabLabel = 'Profile';
           }
+          // else if (route.name == Routes.AddContacts) {
+          //   tabIcon = '';
+          //   tabLabel = '';
+          // }
 
           const isFocused = () => {
             return (
@@ -150,6 +155,14 @@ const BottomTabStack = () => {
       />
       <BottomTab.Screen name={Routes.Activity} component={Activity} />
       <BottomTab.Screen name={Routes.ProfileScreen} component={ProfileScreen} />
+
+      <BottomTab.Screen
+        name={Routes.AddContacts}
+        component={AddContacts}
+        options={{
+          tabBarButton: () => null,
+        }}
+      />
     </BottomTab.Navigator>
   );
 };
