@@ -10,7 +10,10 @@ const Routes = {
     RestoreAccess:"RestoreAccess",
     MapScreen:"MapScreen",
     AddLocation:"AddLocation",
-    ContactDetail:"ContactDetail"
+    ContactDetail:"ContactDetail",
+    ContactSetting:"ContactSetting",
+    AddContacts:"AddContacts",
+    InviteUser:"InviteUser"
 }
 
 export default Routes

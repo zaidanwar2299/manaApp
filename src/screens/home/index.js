@@ -175,6 +175,7 @@ const Home = () => {
             }}
             swipeDirection={['down']}
             onSwipeComplete={modalToggle}
+            onBackdropPress={modalToggle}
             backdropOpacity={0}
             style={{
               marginRight: insets.right,
@@ -368,6 +369,7 @@ const Home = () => {
         }}
         swipeDirection={['down']}
         onSwipeComplete={appointToggle}
+        onBackdropPress={modalToggle}
         backdropOpacity={0}
         style={{
           marginRight: insets.right,

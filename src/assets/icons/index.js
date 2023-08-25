@@ -28,7 +28,8 @@ export default {
     PersonPlus:require("./PersonPlus.png"),
     settings:require("./settings.png"),
     downArrow:require("./downArrow.png"),
-    
-    
-    
+    plusCircle:require("./plusCircle.png"),
+    greenTick:require("./greenTick.png"),
+    profilePlus:require("./profilePlus.png"),
+    successTick:require("./successTick.png"),
 }
