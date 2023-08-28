@@ -1,38 +1,26 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
 import React, {useState} from 'react';
 import Header from '../../components/views/header';
-import icons from '../../assets/icons';
 import Fonts from '../../assets/fonts';
-import UnderLine from '../../components/Underline';
-import theme from '../../common/theme';
-import {
-  ProfileList,
-  calendarGroupList,
-  calendarList,
-} from '../../common/constants';
 import Routes from '../../navigation/routes';
 import {navigate} from '../../navigation/navigation.utils';
+import icons from '../../assets/icons';
+import {calendarList} from '../../common/constants';
+import UnderLine from '../../components/Underline';
+import theme from '../../common/theme';
 import CustomModal from '../../components/customModal';
-import {Spacer} from '../../components/Spacer';
 import PrimaryButton from '../../components/buttons/primaryButton';
+import {Spacer} from '../../components/Spacer';
+// import ModalContainer from '../../components/modals/modalContainer'
 
-const CalendarGroup = props => {
-  const defaultModal = props.route.name;
-  console.log('defaultModal', defaultModal);
-  const [modalVisible, setModalVisible] = useState(defaultModal ?? false);
+const MyCalendar = () => {
+  const [modalVisible, setModalVisible] = useState(true);
 
   const modalToggle = () => {
     setModalVisible(!modalVisible);
   };
 
-  const CalendarGroupModal = () => (
+  const CalendarModal = () => (
     <CustomModal
       modalToggle={modalToggle}
       modalVisible={modalVisible}
@@ -86,9 +74,9 @@ const CalendarGroup = props => {
   );
 
   return (
-    <View style={{flex: 1}}>
+    <View>
       <Header
-        title={'My Calendar Group'}
+        title={'My Calendar'}
         titleStyle={{fontSize: 18, fontFamily: Fonts.bold}}
         titleProps={{fontSize: 30}}
         renderRightItem={() => (
@@ -108,64 +96,36 @@ const CalendarGroup = props => {
         )}
       />
       <UnderLine />
-      <ScrollView>
-        <View style={{padding: 20}}>
-          {calendarGroupList.map((item, index) => (
-            <View
-              key={index}
-              style={{
-                width: '100%',
-                height: item.members <= 0 ? 80 : 110,
-                backgroundColor: theme.secondary,
-                borderRadius: 10,
-                padding: 15,
-                paddingLeft: 17,
-                marginTop: 20,
-              }}>
-              <View style={{...styles.spacebetween}}>
-                <View style={{...styles.flexRow}}>
-                  <View style={{...styles.dot, backgroundColor: item.color}} />
-                  <Text style={{...styles.fontStyleBody, maxWidth: 200}}>
-                    {item.name}
-                  </Text>
-                </View>
-                <Text
-                  style={{
-                    ...styles.fontStyle,
-                  }}>{`${item.members} Members`}</Text>
+      <View style={{padding: 20}}>
+        {calendarList.map((item, index) => (
+          <View
+            key={index}
+            style={{
+              width: '100%',
+              height: item.members <= 0 ? 80 : 55,
+              backgroundColor: theme.secondary,
+              borderRadius: 10,
+              padding: 15,
+              paddingLeft: 17,
+              marginTop: 20,
+            }}>
+            <View style={{...styles.spacebetween}}>
+              <View style={{...styles.flexRow}}>
+                <View style={{...styles.dot, backgroundColor: item.color}} />
+                <Text style={{...styles.fontStyleBody, maxWidth: 200}}>
+                  {item.name}
+                </Text>
               </View>
-              <View
+              <Text
                 style={{
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  justifyContent: 'flex-end',
-                  height: '70%',
-                  flexDirection: 'row',
-                  alignSelf: 'flex-end',
-                  // width: 40,
-                }}>
-                {item.members > 0 ? (
-                  <>
-                    {ProfileList.map((item, index) => (
-                      <Image
-                        key={index}
-                        source={item.image}
-                        style={{
-                          height: 35,
-                          width: 35,
-                          resizeMode: 'cover',
-                          marginLeft: -10,
-                        }}
-                      />
-                    ))}
-                  </>
-                ) : null}
-              </View>
+                  ...styles.fontStyle,
+                  alignSelf: 'center',
+                }}>{`${item.members} Members`}</Text>
             </View>
-          ))}
-        </View>
-        <CalendarGroupModal />
-      </ScrollView>
+          </View>
+        ))}
+      </View>
+      <CalendarModal />
     </View>
   );
 };
@@ -192,6 +152,12 @@ const styles = StyleSheet.create({
   },
   modalFontStyle: {
     fontSize: 28,
+    fontFamily: Fonts.bold,
+    color: 'white',
+    alignSelf: 'center', 
+  },
+  headerFontStyle: {
+    fontSize: 30,
     fontFamily: Fonts.bold,
     color: 'white',
     alignSelf: 'center',
@@ -225,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarGroup;
+export default MyCalendar;

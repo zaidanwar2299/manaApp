@@ -19,6 +19,7 @@ import icons from '../../../../assets/icons';
 import PrimaryButton from '../../../../components/buttons/primaryButton';
 import {AppStyles} from '../../../../common/styles';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import CustomModal from '../../../../components/customModal';
 
 const InviteUser = () => {
   const insets = useSafeAreaInsets();
@@ -99,7 +100,7 @@ const InviteUser = () => {
           />
         </View>
       </ScrollView>
-      <Modal
+      {/* <Modal
         animationType="slide"
         transparent={true}
         // visible={modalVisible}
@@ -111,7 +112,7 @@ const InviteUser = () => {
         // swipeDirection={['down']}
         // onSwipeComplete={()=>setModalVisible(false)}
         isVisible={modalVisible}
-        swipeDirection={['up', 'down']} // Configure swipe directions
+        swipeDirection={['down']} // Configure swipe directions
         onSwipeComplete={modalToggle} // Function to call when modal is swiped
         onBackdropPress={modalToggle}
         backdropOpacity={0}
@@ -165,7 +166,57 @@ const InviteUser = () => {
             </View>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
+
+      <CustomModal
+        modalToggle={modalToggle}
+        modalVisible={modalVisible}
+        content={
+          <View style={{...styles.modalDesign}}>
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: theme.primary,
+                borderTopRightRadius: 30,
+                borderTopLeftRadius: 30,
+              }}>
+              <View style={[styles.swiperHolder]} />
+              <Spacer height={10} />
+              <View style={{padding: 20}}>
+                <Image
+                  source={icons.successTick}
+                  style={{
+                    height: 80,
+                    width: 100,
+                    resizeMode: 'contain',
+                    alignSelf: 'center',
+                  }}
+                />
+                <Spacer height={10} />
+                <Text style={{...styles.modalFontStyle}}>{'Success!'}</Text>
+                <Spacer height={15} />
+                <Text
+                  style={{
+                    ...styles.fontStyle,
+                    alignSelf: 'center',
+                    fontFamily: Fonts.regular,
+                  }}>
+                  {'Your invitation was successfully sent.'}
+                </Text>
+                <Spacer height={40} />
+                <PrimaryButton
+                  labelStyle={{fontSize: 15, color: 'white'}}
+                  label={'Done'}
+                  innerContainerStyle={{backgroundColor: theme.blue}}
+                  onPress={() => {
+                    // navigation.navigate(Routes.CreateAppointment);
+                    modalToggle();
+                  }}
+                />
+              </View>
+            </View>
+          </View>
+        }></CustomModal>
     </View>
   );
 };

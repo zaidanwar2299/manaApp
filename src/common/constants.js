@@ -201,8 +201,7 @@ export const ProfileList = [
 
 ]
 
-
-export const calendarList = [
+export const calendarGroupList = [
   {
     id:1,
     name:"Work Calendar",
@@ -220,5 +219,20 @@ export const calendarList = [
     name:"Calendar group with a long name",
     members:0,
     color: theme.blue,
+  },
+]
+
+export const calendarList = [
+  {
+    id:1,
+    name:"Work Calendar",
+    members:8,
+    color: theme.pink,
+  },
+  {
+    id:2,
+    name:"Travel Calendar",
+    members:20,
+    color: theme.green,
   },
 ]

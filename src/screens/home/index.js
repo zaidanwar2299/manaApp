@@ -43,6 +43,7 @@ import GroupCheckBox from '../../components/views/groupCheckBox';
 import BoxSelector from '../../components/boxSelector';
 import Checkbox from '../../components/views/groupCheckBox/items/checkBox';
 import {Appointment} from '../../common/constants';
+import CustomModal from '../../components/customModal';
 
 const Home = () => {
   const navigation = useNavigation();
@@ -96,7 +97,6 @@ const Home = () => {
   const modalToggle = () => {
     setModalVisible(!modalVisible);
   };
-
   const [modalAppointVisible, setModalAppointVisible] = useState(false);
 
   const appointToggle = () => {
@@ -165,7 +165,7 @@ const Home = () => {
               </View>
             </TouchableOpacity>
           ))}
-          <Modal
+          {/* <Modal
             animationType="slide"
             transparent={true}
             visible={modalVisible}
@@ -274,7 +274,104 @@ const Home = () => {
                 </View>
               </View>
             </View>
-          </Modal>
+          </Modal> */}
+          <CustomModal
+            modalToggle={modalToggle}
+            modalVisible={modalVisible}
+            content={
+              <View style={{...styles.modalDesign}}>
+                <View
+                  style={{
+                    flex: 1,
+                    backgroundColor: theme.primary,
+                    borderTopRightRadius: 30,
+                    borderTopLeftRadius: 30,
+                  }}>
+                  <View style={[styles.swiperHolder]} />
+                  <Text
+                    style={{
+                      ...AppStyles.h11,
+                      fontSize: 28,
+                      fontFamily: Fonts.bold,
+                    }}>
+                    {'Meeting Mario'}
+                  </Text>
+                  <View>
+                    <Text style={{...AppStyles.h4, fontFamily: Fonts.thin}}>
+                      {'Saturday, 2 Jun'}
+                    </Text>
+                    <Text style={{...AppStyles.h4, fontFamily: Fonts.thin}}>
+                      {'8:00 am - 9:00 am'}
+                    </Text>
+                  </View>
+                  <View style={{padding: 20}}>
+                    <View
+                      style={{
+                        ...styles.spaceBetween,
+                        alignItems: 'center',
+                      }}>
+                      <View
+                        style={{
+                          ...styles.flexRow,
+                          alignItems: 'center ',
+                        }}>
+                        <Image
+                          source={icons.calendarPic}
+                          style={{height: 30, width: 30, resizeMode: 'contain'}}
+                        />
+                        <Text
+                          style={{
+                            color: theme.grey200,
+                            alignSelf: 'center',
+                            marginLeft: 6,
+                          }}>
+                          {'Mario Mourad'}
+                        </Text>
+                      </View>
+                      <View style={{...styles.flexRow}}>
+                        <Image
+                          source={icons.locationWhite}
+                          style={{height: 16, width: 16, resizeMode: 'contain'}}
+                        />
+                        <Text
+                          style={{
+                            ...styles.locationText,
+                          }}>
+                          {'JFK Airport'}
+                        </Text>
+                      </View>
+                    </View>
+                    <Spacer height={20} />
+                    <View>
+                      <Text
+                        style={{color: theme.grey100, fontFamily: Fonts.bold}}>
+                        {'Notes:'}
+                      </Text>
+                      <Text
+                        style={{
+                          color: theme.grey200,
+                          fontSize: 13,
+                          marginTop: 10,
+                        }}>
+                        {
+                          'Arrive at the airport ahead of time. Discuss the purpose of visit, whether it is for business, vacation, or any other reason.'
+                        }
+                      </Text>
+                    </View>
+                    <Spacer height={25} />
+                    <PrimaryButton
+                      labelStyle={{fontSize: 15}}
+                      label={'Edit Appointment'}
+                      onPress={() => {
+                        navigation.navigate(Routes.CreateAppointment);
+                        modalToggle();
+                      }}
+                    />
+                  </View>
+                </View>
+              </View>
+            }
+          />
         </View>
       </View>
     );
@@ -360,83 +457,72 @@ const Home = () => {
           </View>
         )}
       />
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalAppointVisible}
-        onRequestClose={() => {
-          setModalAppointVisible(!modalAppointVisible);
-        }}
-        swipeDirection={['down']}
-        onSwipeComplete={appointToggle}
-        onBackdropPress={modalToggle}
-        backdropOpacity={0}
-        style={{
-          marginRight: insets.right,
-          marginLeft: insets.left,
-          marginTop: insets.top - 60,
-          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-        }}>
-        <View style={{...styles.modalDesign}}>
-          <View
-            style={{
-              flex: 1,
-              backgroundColor: theme.primary,
-              borderTopRightRadius: 30,
-              borderTopLeftRadius: 30,
-            }}>
-            <View style={[styles.swiperHolder]} />
-            <Text
+      <CustomModal
+        modalToggle={appointToggle}
+        modalVisible={modalAppointVisible}
+        content={
+          <View style={{...styles.modalDesign}}>
+            <View
               style={{
-                ...AppStyles.h11,
-                fontSize: 28,
-                fontFamily: Fonts.bold,
+                flex: 1,
+                backgroundColor: theme.primary,
+                borderTopRightRadius: 30,
+                borderTopLeftRadius: 30,
               }}>
-              {'Show Appointments'}
-            </Text>
-            <View style={{marginTop: 20}}></View>
+              <View style={[styles.swiperHolder]} />
+              <Text
+                style={{
+                  ...AppStyles.h11,
+                  fontSize: 28,
+                  fontFamily: Fonts.bold,
+                }}>
+                {'Show Appointments'}
+              </Text>
+              <View style={{marginTop: 20}}></View>
 
-            {/* Appointment Body */}
-            <>
-              {Appointment.map((item, index) => (
-                <View key={index} style={{...styles.appointmentBody}}>
-                  <View style={{paddingHorizontal: 20, ...styles.spaceBetween}}>
-                    <View style={{...styles.flexRow}}>
-                      <View
-                        style={{...styles.dot, backgroundColor: item.color}}
-                      />
-                      <Text
-                        style={{
-                          color: 'white',
-                          fontFamily: Fonts.regular,
-                          fontSize: 15,
-                          alignSelf: 'center',
-                        }}>
-                        {item.name}
-                      </Text>
-                    </View>
+              {/* Appointment Body */}
+              <>
+                {Appointment.map((item, index) => (
+                  <View key={index} style={{...styles.appointmentBody}}>
+                    <View
+                      style={{paddingHorizontal: 20, ...styles.spaceBetween}}>
+                      <View style={{...styles.flexRow}}>
+                        <View
+                          style={{...styles.dot, backgroundColor: item.color}}
+                        />
+                        <Text
+                          style={{
+                            color: 'white',
+                            fontFamily: Fonts.regular,
+                            fontSize: 15,
+                            alignSelf: 'center',
+                          }}>
+                          {item.name}
+                        </Text>
+                      </View>
 
-                    <View>
-                      <Checkbox
-                        value={state.appointment}
-                        onChange={value => {
-                          setState({appointment: value});
-                        }}
-                      />
+                      <View>
+                        <Checkbox
+                          value={state.appointment}
+                          onChange={value => {
+                            setState({appointment: value});
+                          }}
+                        />
+                      </View>
                     </View>
                   </View>
-                </View>
-              ))}
-            </>
-            <Spacer height={50} />
-            <PrimaryButton
-              innerContainerStyle={{width: '90%', alignSelf: 'center'}}
-              labelStyle={{fontSize: 15, fontFamily: Fonts.bold}}
-              label={'Save'}
-            />
+                ))}
+              </>
+              <Spacer height={50} />
+              <PrimaryButton
+                innerContainerStyle={{width: '90%', alignSelf: 'center'}}
+                labelStyle={{fontSize: 15, fontFamily: Fonts.bold}}
+                label={'Save'}
+              />
+            </View>
           </View>
-        </View>
-      </Modal>
+        }
+      />
 
       <CalendarProvider date={new Date()} showTodayButton disabledOpacity={0.6}>
         <View>

@@ -36,7 +36,9 @@ export default {
     profile2:require("./profile2.png"),
     profile3:require("./profile3.png"),
     profile4:require("./profile4.png"),
-
-
+    crossPink:require("./crossPink.png"),
+    edit:require("./edit.png"),
+    cameraPlus:require("./cameraPlus.png"),
+    
     
 }
