@@ -17,7 +17,8 @@ const Routes = {
     CalendarGroup:"CalendarGroup",
     CreateCalendarGroup:"CreateCalendarGroup",
     MyCalendar:"MyCalendar",
-    CalendarDetail:"CalendarDetail"
+    CalendarDetail:"CalendarDetail",
+    ConnectedApps:"ConnectedApps"
 }
 
 export default Routes

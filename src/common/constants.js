@@ -236,3 +236,41 @@ export const calendarList = [
     color: theme.green,
   },
 ]
+
+export const unlinked = [
+  {
+    id:1,
+    name:"Unlink Google Calendar"
+  },
+  {
+    id:2,
+    name:"Unlink Airbnb"
+  },
+]
+
+export const linked = [
+  {
+    id:1,
+    name:"Connect Booking.com"
+  },
+  {
+    id:2,
+    name:"Connect Resy"
+  },
+  {
+    id:3,
+    name:"Connect American Airlines"
+  },
+  {
+    id:4,
+    name:"Connect Apple iCal"
+  },
+  {
+    id:5,
+    name:"Connect Calendy"
+  },
+  {
+    id:6,
+    name:"Connect Microsoft Outlook"
+  },
+]

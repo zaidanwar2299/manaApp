@@ -30,6 +30,7 @@ import CalendarGroup from '../screens/calendarGroup';
 import CreateCalendarGroup from '../screens/createCalendarGroup';
 import MyCalendar from '../screens/myCalendar';
 import CalendarDetail from '../screens/calendarDetail';
+import ConnectedApps from '../connectedApps';
 // import MapScreen from '../screens/MapScreen';
 
 // import DrawerStack from "./stacks/drawerStack";
@@ -50,7 +51,7 @@ const RootNavigator = () => {
   return (
     <>
       {/* <RootSiblingParent>  */}
-        <Stack.Navigator initialRouteName='CalendarDetail' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='BottomTabStack' screenOptions={{ headerShown: false }}>
           <Stack.Screen name={Routes.BottomTabStack} component={BottomTabStack} />
           <Stack.Screen name={Routes.Login} component={Login} />
           <Stack.Screen name={Routes.Register} component={Register} />
@@ -69,6 +70,7 @@ const RootNavigator = () => {
           <Stack.Screen name={Routes.CreateCalendarGroup} component={CreateCalendarGroup} />
           <Stack.Screen name={Routes.MyCalendar} component={MyCalendar} />
           <Stack.Screen name={Routes.CalendarDetail} component={CalendarDetail} />
+          <Stack.Screen name={Routes.ConnectedApps} component={ConnectedApps} />
           {/* <Stack.Screen name={Routes.MapScreen} component={MapScreen} /> */}
         </Stack.Navigator>
         {/* <FlashMessage

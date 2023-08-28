@@ -134,7 +134,11 @@ const CreateCalendarGroup = () => {
       </View>
 
       <PrimaryButton
-      onPress={()=> { navigate(Routes.CalendarGroup),{defaultModal: true}}}
+      onPress={()=> {
+         navigate(Routes.CalendarGroup,{
+          defaultModal: true
+         })
+        }}
         containerStyle={{padding: 15, marginTop: 30, marginBottom:20}}
         label={'Create Group'}
       />

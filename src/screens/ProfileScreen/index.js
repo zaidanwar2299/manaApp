@@ -31,6 +31,7 @@ const ProfileScreen = () => {
       id: 2,
       leftItem: 'Connected Apps (2)',
       RightItem: '2',
+      routeName: Routes.ConnectedApps
     },
     {
       id: 3,

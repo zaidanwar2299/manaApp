@@ -26,8 +26,11 @@ import Routes from '../../navigation/routes';
 import {navigate} from '../../navigation/navigation.utils';
 import Services from '../../services';
 import Geocoder from 'react-native-geocoding';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CreateAppointment = () => {
+  const insets = useSafeAreaInsets();
+
   const [isPrivate, setIsPrivate] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const togglePrivate = () => setIsPrivate(previousState => !previousState);
@@ -52,6 +55,20 @@ const CreateAppointment = () => {
   // const DateModal = () => {
   //   setModalVisible(!modalVisible);
   // };
+
+  const [inputData, setInputData] = useState('');
+  const [addedData, setAddedData] = useState([]);
+
+  const handleAddData = () => {
+    if (inputData.trim() !== '') {
+      setAddedData([...addedData, inputData]);
+      setInputData('');
+    }
+  };
+  const removeItem = index => {
+    const updatedList = addedData.filter((_, i) => i !== index);
+    setAddedData(updatedList);
+  };
 
 
   // For Time Picker
@@ -250,7 +267,56 @@ const CreateAppointment = () => {
             </TouchableOpacity>
           </Modal>
 
-          <PickerButton
+
+          <PrimaryInput title="Notes (optional)" placeholder="Enter a note" />
+
+        <PrimaryInput
+          value={inputData}
+          onChangeText={text => setInputData(text)}
+          renderRightItem={() => (
+            <TouchableOpacity onPress={handleAddData}>
+              <Image
+                source={icons.circlePlus}
+                style={{
+                  height: 30,
+                  width: 30,
+                  resizeMode: 'contain',
+                  marginRight: 10,
+                }}
+              />
+            </TouchableOpacity>
+          )}
+          placeholder={'Add Contacts'}
+          title="Invite people"
+        />
+        <Spacer height={15} />
+        {addedData.map((item, index) => (
+          <View key={index}>
+            <View style={{...styles.inviteBody}}>
+              <View style={{...styles.spaceBetween}}>
+                <View style={{...styles.flexRow}}>
+                  <Image
+                    source={icons.profile1}
+                    style={{...styles.imageStyle}}
+                  />
+                  <Spacer width={10} />
+                  <Text style={{...styles.emailFontStyle}}>{item}</Text>
+                </View>
+                <TouchableOpacity
+                  style={{alignSelf: 'center'}}
+                  onPress={() => removeItem(index)}>
+                  <Image
+                    source={icons.crossPink}
+                    style={{...styles.iconStyle}}
+                  />
+                </TouchableOpacity>
+              </View>
+              <UnderLine width={insets.top + 300} height={1} />
+            </View>
+          </View>
+        ))}
+
+          {/* <PickerButton
             placeholder="Jane Doe"
             title="Invite people (optional)"
             showDownIcon={false}
@@ -260,7 +326,7 @@ const CreateAppointment = () => {
                 style={{...AppStyles.pickerIconStyle}}
               />
             )}
-          />
+          /> */}
           <Text
             style={{
               marginTop: 30,
@@ -317,6 +383,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  flexRow: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
   toggleText: {
     fontSize: 16,
     color: 'white',
@@ -343,6 +413,31 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
     paddingBottom: 20,
+  },
+  inviteBody: {
+    width: '100%',
+    height: 60,
+    display: 'flex',
+    justifyContent: 'center',
+    borderColor: 'grey',
+    padding: 3,
+  },
+  imageStyle:{
+    height: 40,
+    width: 40,
+    resizeMode: 'contain',
+    alignSelf: 'center',
+  },
+  emailFontStyle: {
+    fontSize: 16,
+    fontFamily: Fonts.regular,
+    color: 'white',
+    alignSelf: 'center',
+  },
+  iconStyle:{
+    height: 15,
+    width: 15,
+    resizeMode: 'contain',
   },
 });
 

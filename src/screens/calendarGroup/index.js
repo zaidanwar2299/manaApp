@@ -6,7 +6,7 @@ import {
   StyleSheet,
   ScrollView,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from '../../components/views/header';
 import icons from '../../assets/icons';
 import Fonts from '../../assets/fonts';
@@ -24,14 +24,18 @@ import {Spacer} from '../../components/Spacer';
 import PrimaryButton from '../../components/buttons/primaryButton';
 
 const CalendarGroup = props => {
-  const defaultModal = props.route.name;
+  const defaultModal = props.route?.params?.defaultModal;
   console.log('defaultModal', defaultModal);
-  const [modalVisible, setModalVisible] = useState(defaultModal ?? false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const modalToggle = () => {
+    console.log('toggeleCall');
     setModalVisible(!modalVisible);
   };
-
+useEffect(()=>{
+  console.log('useEffect');
+  setModalVisible(defaultModal??false)
+},[defaultModal])
   const CalendarGroupModal = () => (
     <CustomModal
       modalToggle={modalToggle}
